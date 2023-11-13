@@ -10,6 +10,8 @@ class PhoneBook {
 	public:
 		PhoneBook();
 		void AddContact(Contacts contact);
+		Contacts getContact(int index);
+		int	GetIndex();
 };
 
 #endif

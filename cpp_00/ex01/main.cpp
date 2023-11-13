@@ -64,26 +64,54 @@ int	main(void)
 			}
 			std::cout << "Enter your phone number : ";
 			getline(std::cin, num);
-			if (!CheckNumber(num))
+			while (!CheckNumber(num))
 			{
 				std::cout << "Please enter a valid phone number : ";
 				getline(std::cin, num);
 			}
 			std::cout << "Enter your darkest secret : ";
 			getline(std::cin, secret);
-			if (!CheckName(secret))
+			while (!CheckName(secret))
 			{
 				std::cout << "Please enter a valid secret : ";
 				getline(std::cin, secret);
 			}
-			Contacts Contacts(first, last, nick, secret, num);
-			phonebook.AddContact(Contacts);
+			Contacts contact = Contacts(first, last, nick, secret, num);
+			phonebook.AddContact(contact);
 		}
 		else if (!input.compare("SEARCH"))
 		{
-			////
+			std::cout << std::setw(10) << "Index" << "| "
+					  << std::setw(10) << "First Name" << "| "
+			          << std::setw(10) << "Last Name" << "| " 
+					  << std::setw(10) << "Nickname" << "| " << std::endl;
+			for (int i = 0; i < phonebook.GetIndex(); ++i) {
+			    Contacts contact = phonebook.getContact(i);
+			    std::cout << std::setw(10) << i + 1 << " | ";
+			    std::cout << std::setw(10) << (contact.GetFirstName().length() > 10 ? contact.GetFirstName().substr(0, 9) + "." : contact.GetFirstName()) << " | ";
+			    std::cout << std::setw(10) << (contact.GetLastName().length() > 10 ? contact.GetLastName().substr(0, 9) + "." : contact.GetLastName()) << " | ";
+			    std::cout << std::setw(10) << (contact.GetNickname().length() > 10 ? contact.GetNickname().substr(0, 9) + "." : contact.GetNickname()) << " | ";
+			    std::cout << std::endl;
+			}
+			std::cout << "Enter the index of the contact to display: ";
+			std::string input;
+			getline(std::cin, input);
+			const char *indexStr = input.c_str();
+			int	indexToDisplay = std::atoi(indexStr);
+			if (indexToDisplay > 0 && indexToDisplay <= 8)
+			{
+				Contacts selectedContact = phonebook.getContact(indexToDisplay - 1);
+				std::cout << "Index: " << indexToDisplay - 1 << std::endl;
+				std::cout << "First Name: " << selectedContact.GetFirstName() << std::endl;
+				std::cout << "Last Name: " << selectedContact.GetLastName() << std::endl;
+				std::cout << "Nickname: " << selectedContact.GetNickname() << std::endl;
+				std::cout << "Darkest Secret: " << selectedContact.GetSecret() << std::endl;
+				std::cout << "Phone Number: " << selectedContact.GetPhoneNum() << std::endl;
+			}
+			else
+			{
+				std::cout << "Invalid index. Please enter a valid index." << std::endl;
+			}
 		}
 	}
-
-	// contacts.PrintContacts();
 }
