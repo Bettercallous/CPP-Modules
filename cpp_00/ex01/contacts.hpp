@@ -5,15 +5,15 @@
 
 class Contacts {
 	private:
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string darkest_secret;
-		std::string	phone_number;
+		std::string	FirstName;
+		std::string	LastName;
+		std::string	Nickname;
+		std::string DarkestSecret;
+		std::string	PhoneNumber;
 	public:
+		Contacts() {};
 		Contacts(std::string first, std::string last, std::string nick,
 			std::string secret, std::string num);
-		void PrintContacts();
 };
 
 #endif
