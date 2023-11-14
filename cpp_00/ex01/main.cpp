@@ -21,4 +21,5 @@ int main(void) {
 			phonebook.displayContactInfo();
 		}
 	}
+	return (0);
 }

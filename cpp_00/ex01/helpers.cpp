@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-int	CheckName(std::string name)
+int	checkName(std::string name)
 {
 	int	i = 0;
 	if (name.empty())
@@ -19,7 +19,7 @@ int	CheckName(std::string name)
 	return (0);
 }
 
-int	CheckNumber(std::string number)
+int	checkNumber(std::string number)
 {
 	int	i = 0;
 	if (number.empty())

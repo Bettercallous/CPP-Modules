@@ -12,17 +12,17 @@ class Contacts {
 		std::string DarkestSecret;
 		std::string	PhoneNumber;
 	public:
-		Contacts() {};
+		Contacts();
 		Contacts(std::string first, std::string last, std::string nick,
 			std::string secret, std::string num);
-		std::string GetFirstName();
-		std::string GetLastName();
-		std::string GetNickname();
-		std::string GetSecret();
-		std::string GetPhoneNum();
+		std::string getFirstName();
+		std::string getLastName();
+		std::string getNickname();
+		std::string getSecret();
+		std::string getPhoneNum();
 };
 
-int	CheckNumber(std::string number);
-int	CheckName(std::string name);
+int	checkNumber(std::string number);
+int	checkName(std::string name);
 
 #endif
