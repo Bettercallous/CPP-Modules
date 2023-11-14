@@ -1,4 +1,4 @@
-#include "contacts.hpp"
+#include "Contacts.hpp"
 
 Contacts::Contacts(std::string first, std::string last, std::string nick, std::string secret, std::string num)
 {

@@ -6,13 +6,13 @@
 #    By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 01:38:44 by oubelhaj          #+#    #+#              #
-#    Updated: 2023/11/14 05:00:31 by oubelhaj         ###   ########.fr        #
+#    Updated: 2023/11/14 13:34:20 by oubelhaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
-SRC = main.cpp phonebook.cpp contacts.cpp helpers.cpp
+SRC = main.cpp PhoneBook.cpp Contacts.cpp helpers.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
