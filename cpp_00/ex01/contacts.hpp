@@ -22,4 +22,7 @@ class Contacts {
 		std::string GetPhoneNum();
 };
 
+int	CheckNumber(std::string number);
+int	CheckName(std::string name);
+
 #endif
