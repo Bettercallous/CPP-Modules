@@ -1,8 +1,7 @@
 #include "phonebook.hpp"
 
-
 int main(void) {
-	std::string input, first, last, nick, secret, num;
+	std::string input;
 	PhoneBook phonebook;
 
 	while (1) {
@@ -13,8 +12,8 @@ int main(void) {
 			return (0);
 		}
 
-		if (!input.compare("return ")) {
-			std::cout << "return ing...\n";
+		if (!input.compare("EXIT")) {
+			std::cout << "Exiting...\n";
 			return  0;
 		} else if (!input.compare("ADD")) {
 			std::string prompts[] = {"first name", "last name", "Nickname", "darkest secret"};
@@ -24,7 +23,7 @@ int main(void) {
 				std::cout << "Enter your " << prompts[i] << " : ";
 				getline(std::cin, values[i]);
 				
-				if (std::cin.eof()){
+				if (std::cin.eof()) {
 					std::cout << std::endl;
 					return (0);
 				}
@@ -33,7 +32,7 @@ int main(void) {
 					std::cout << "Please enter a valid " << prompts[i] << " : ";
 					getline(std::cin, values[i]);
 					
-					if (std::cin.eof()){
+					if (std::cin.eof()) {
 						std::cout << std::endl;
 						return (0);
 					}
@@ -42,7 +41,7 @@ int main(void) {
 				std::cout << "Enter your phone number : ";
 				getline(std::cin, values[4]);
 				
-				if (std::cin.eof()){
+				if (std::cin.eof()) {
 					std::cout << std::endl;
 					return (0);
 				}
@@ -51,7 +50,7 @@ int main(void) {
 					std::cout << "Please enter a valid phone number : ";
 					getline(std::cin, values[4]);
 					
-					if (std::cin.eof()){
+					if (std::cin.eof()) {
 						std::cout << std::endl;
 						return (0);
 					}
@@ -88,17 +87,16 @@ int main(void) {
 
 			const char *indexStr = input.c_str();
 			int indexToDisplay = std::atoi(indexStr);
-
 			if (indexToDisplay > phonebook.GetIndex() && indexToDisplay <= 8) {
 				std::cout << "No current contact with the given index." << std::endl;
 			} else if (indexToDisplay > 0 && indexToDisplay <= 8) {
 				Contacts selectedContact = phonebook.getContact(indexToDisplay - 1);
-				std::cout << "Index: " << indexToDisplay << std::endl;
-				std::cout << "First Name: " << selectedContact.GetFirstName() << std::endl;
-				std::cout << "Last Name: " << selectedContact.GetLastName() << std::endl;
-				std::cout << "Nickname: " << selectedContact.GetNickname() << std::endl;
-				std::cout << "Darkest Secret: " << selectedContact.GetSecret() << std::endl;
-				std::cout << "Phone Number: " << selectedContact.GetPhoneNum() << std::endl;
+				std::cout << "- Index: " << indexToDisplay << std::endl;
+				std::cout << "- First Name: " << selectedContact.GetFirstName() << std::endl;
+				std::cout << "- Last Name: " << selectedContact.GetLastName() << std::endl;
+				std::cout << "- Nickname: " << selectedContact.GetNickname() << std::endl;
+				std::cout << "- Darkest Secret: " << selectedContact.GetSecret() << std::endl;
+				std::cout << "- Phone Number: " << selectedContact.GetPhoneNum() << std::endl;
 			} else {
 				std::cout << "Invalid index. Please enter a valid index." << std::endl;
 			}

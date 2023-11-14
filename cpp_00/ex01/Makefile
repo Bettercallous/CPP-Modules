@@ -6,7 +6,7 @@
 #    By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 01:38:44 by oubelhaj          #+#    #+#              #
-#    Updated: 2023/11/14 03:00:45 by oubelhaj         ###   ########.fr        #
+#    Updated: 2023/11/14 05:00:31 by oubelhaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ = ${SRC:.cpp=.o}
 
 CXX = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 

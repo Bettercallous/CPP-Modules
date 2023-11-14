@@ -17,15 +17,9 @@ void PhoneBook::AddContact(Contacts contact) {
 }
 
 Contacts PhoneBook::getContact(int index) {
-    if (index >= 0 && index < 8) {
-        return contacts[index];
-    } else {
-        // Handle out-of-bounds access
-        return contacts[0];
-    }
+	return contacts[index];
 }
 
-int	PhoneBook::GetIndex()
-{
-	return this->index;
+int	PhoneBook::GetIndex() {
+	return index;
 }
