@@ -24,5 +24,6 @@ class Contacts {
 
 int	checkNumber(std::string number);
 int	checkName(std::string name);
+int	checkName2(std::string name);
 
 #endif

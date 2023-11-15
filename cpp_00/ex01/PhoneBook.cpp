@@ -1,7 +1,15 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(){
+PhoneBook::PhoneBook() {
 	count = 0;
+}
+
+Contacts PhoneBook::getContact(int index) {
+	return contacts[index];
+}
+
+int	PhoneBook::getCount() {
+	return count;
 }
 
 void PhoneBook::saveContact(Contacts contact) {
@@ -18,37 +26,26 @@ void PhoneBook::saveContact(Contacts contact) {
 	}
 }
 
-Contacts PhoneBook::getContact(int index) {
-	return contacts[index];
-}
-
-int	PhoneBook::getCount() {
-	return count;
-}
-
-void	PhoneBook::displayAllContacts()
-{
-	std::cout << std::setw(10) << "Index" << " | "
-			  << std::setw(10) << "First Name" << " | "
-			  << std::setw(10) << "Last Name" << " | " 
-			  << std::setw(10) << "Nickname" << " | " << std::endl;
+void	PhoneBook::displayAllContacts() {
+	std::cout << std::setw(10) << "Index" << "|"
+			  << std::setw(10) << "First Name" << "|"
+			  << std::setw(10) << "Last Name" << "|" 
+			  << std::setw(10) << "Nickname" << std::endl;
 
 	Contacts contact;
 	for (int i = 0; i < getCount(); ++i) {
 		contact = getContact(i);
-		std::cout << std::setw(10) << i + 1 << " | ";
+		std::cout << std::setw(10) << i + 1 << "|";
 		std::cout << std::setw(10) << (contact.getFirstName().length() > 10 ?
-			contact.getFirstName().substr(0, 9) + "." : contact.getFirstName()) << " | ";
+			contact.getFirstName().substr(0, 9) + "." : contact.getFirstName()) << "|";
 		std::cout << std::setw(10) << (contact.getLastName().length() > 10 ?
-			contact.getLastName().substr(0, 9) + "." : contact.getLastName()) << " | ";
+			contact.getLastName().substr(0, 9) + "." : contact.getLastName()) << "|";
 		std::cout << std::setw(10) << (contact.getNickname().length() > 10 ?
-			contact.getNickname().substr(0, 9) + "." : contact.getNickname()) << " | ";
-		std::cout << std::endl;
+			contact.getNickname().substr(0, 9) + "." : contact.getNickname()) << std::endl;
 	}
 }
 
-void	PhoneBook::displayContactInfo()
-{
+void	PhoneBook::displayContactInfo() {
 	std::cout << "Enter the index of the contact to display: ";
 	std::string input;
 	getline(std::cin, input);
@@ -57,7 +54,7 @@ void	PhoneBook::displayContactInfo()
 		std::cout << std::endl;
 		exit(0);
 	}
-	for (int i = 0; input[i]; i++)	{
+	for (int i = 0; input[i]; i++) {
 		if (!isdigit(input[i])) {
 			std::cout << "Invalid index. Please enter a valid index." << std::endl;
 			return;
@@ -80,12 +77,11 @@ void	PhoneBook::displayContactInfo()
 	}
 }
 
-void	PhoneBook::addContact()
-{
+void	PhoneBook::addContact() {
 	std::string prompts[] = {"first name", "last name", "Nickname", "darkest secret"};
 	std::string values[5];
 
-	for (int i = 0; i < 4; ++i) {
+	for (int i = 0; i < 2; ++i) {
 		std::cout << "* Enter your " << prompts[i] << " : ";
 		getline(std::cin, values[i]);
 		
@@ -95,6 +91,25 @@ void	PhoneBook::addContact()
 		}
 
 		while (!checkName(values[i])) {
+			std::cout << "Please enter a valid " << prompts[i] << " : ";
+			getline(std::cin, values[i]);
+			
+			if (std::cin.eof()) {
+				std::cout << std::endl;
+				exit(0);
+			}
+		}
+	}
+	for (int i = 2; i < 4; ++i) {
+		std::cout << "* Enter your " << prompts[i] << " : ";
+		getline(std::cin, values[i]);
+
+		if (std::cin.eof()) {
+			std::cout << std::endl;
+			exit(0);
+		}
+
+		while (!checkName2(values[i])) {
 			std::cout << "Please enter a valid " << prompts[i] << " : ";
 			getline(std::cin, values[i]);
 			
@@ -115,7 +130,7 @@ void	PhoneBook::addContact()
 		while (!checkNumber(values[4])) {
 			std::cout << "Please enter a valid phone number : ";
 			getline(std::cin, values[4]);
-			
+
 			if (std::cin.eof()) {
 				std::cout << std::endl;
 				exit(0);
