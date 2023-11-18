@@ -1,7 +1,7 @@
 
-NAME = megaphone
+NAME = zombiehorde
 
-SRC = megaphone.cpp
+SRC = main.cpp Zombie.cpp zombieHorde.cpp
 
 OBJ = ${SRC:.cpp=.o}
 

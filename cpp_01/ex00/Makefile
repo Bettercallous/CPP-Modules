@@ -1,7 +1,7 @@
 
-NAME = megaphone
+NAME = zombie
 
-SRC = megaphone.cpp
+SRC = main.cpp newZombie.cpp Zombie.cpp randomChump.cpp
 
 OBJ = ${SRC:.cpp=.o}
 

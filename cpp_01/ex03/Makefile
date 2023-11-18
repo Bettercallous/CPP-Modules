@@ -1,7 +1,7 @@
 
-NAME = megaphone
+NAME = violance
 
-SRC = megaphone.cpp
+SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 OBJ = ${SRC:.cpp=.o}
 

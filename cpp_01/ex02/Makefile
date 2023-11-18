@@ -1,7 +1,7 @@
 
-NAME = megaphone
+NAME = brain
 
-SRC = megaphone.cpp
+SRC = main.cpp
 
 OBJ = ${SRC:.cpp=.o}
 

@@ -1,6 +1,6 @@
 #include "Contacts.hpp"
 
-Contacts::Contacts() {};
+Contacts::Contacts() {}
 
 Contacts::Contacts(std::string first, std::string last, std::string nick, std::string secret, std::string num) {
 	FirstName = first;
