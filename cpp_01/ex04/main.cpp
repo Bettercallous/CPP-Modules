@@ -1,18 +1,16 @@
 #include "SearchAndReplace.hpp"
 
-int main() {
-	std::string filename, s1, s2;
-	std::cout << "Enter the file name: ";
-	getline(std::cin, filename);
-	inputCheck(filename);
-	std::cout << "Enter the string you want to replace: ";
-	getline(std::cin, s1);
-	inputCheck(s1);
-	std::cout << "Enter the replacement string: ";
-	getline(std::cin, s2);
-	inputCheck(s2);
-
-	replaceOccurrence(filename, s1, s2);
-
+int main(int ac, char **av) {
+	
+	if (ac != 4) {
+		std::cout << "Invalid Number of arguments" << std::endl;
+		return 1;
+	}
+	std::string filename(av[1]), s1(av[2]), s2(av[3]);
+	if (filename.empty()) {
+		std::cout << "Error: empty argument" << std::endl;
+		return 1;
+	}
+	replaceOccurrence(av[1], av[2], av[3]);
 	return 0;
 }
