@@ -6,12 +6,11 @@
 class Harl {
 	private:
 		std::string level[4];
-		typedef void(Harl::*funcPTR)();
+		void(Harl::*funcPTR[4])();
 		void debug();
 		void info();
 		void warning();
 		void error();
-		funcPTR funcPTRS[4];
 	public:
 		Harl();
 		void complain(std::string level);

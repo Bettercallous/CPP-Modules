@@ -6,10 +6,10 @@ Harl::Harl() {
 	level[2] = "WARNING";
 	level[3] = "ERROR";
 
-	funcPTRS[0] = &Harl::debug;
-	funcPTRS[1] = &Harl::info;
-	funcPTRS[2] = &Harl::warning;
-	funcPTRS[3] = &Harl::error;
+	funcPTR[0] = &Harl::debug;
+	funcPTR[1] = &Harl::info;
+	funcPTR[2] = &Harl::warning;
+	funcPTR[3] = &Harl::error;
 }
 
 void Harl::debug() {
@@ -33,7 +33,7 @@ void Harl::error() {
 void Harl::complain(std::string level) {
 	for (int i = 0; i < 4; i++) {
 		if (level == this->level[i]) {
-			(this->*funcPTRS[i])();
+			(this->*funcPTR[i])();
 			return;
 		}
 	}
