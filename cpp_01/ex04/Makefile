@@ -1,7 +1,7 @@
 
-NAME = searchAndReplace
+NAME = sed
 
-SRC = main.cpp SearchAndReplace.cpp
+SRC = main.cpp Sed.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
