@@ -11,6 +11,6 @@ int main(int ac, char **av) {
 		std::cout << "Error: empty argument" << std::endl;
 		return 1;
 	}
-	replaceOccurrence(av[1], av[2], av[3]);
+	replaceOccurrence(filename, s1, s2);
 	return 0;
 }

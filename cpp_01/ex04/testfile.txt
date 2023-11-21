@@ -1,2 +1,7 @@
 This is a sample text file. It contains some lines of text
 for testing purposes. the word sample is going to be replaced by example.
+
+This is a example text file. It contains some lines of text
+for testing purposes. the word sample is going to be replaced by example.
+
+
