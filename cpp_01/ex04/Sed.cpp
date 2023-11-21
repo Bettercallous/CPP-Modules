@@ -3,7 +3,7 @@
 void replaceOccurrence(const std::string& filename, const std::string& s1, const std::string& s2) {
 
 	// Open and Read the File
-	std::ifstream inputFile(filename.c_str());
+	std::ifstream inputFile(filename);
 
 	if (!inputFile.is_open()) {
 		std::cerr << "Error: Couldn't open the file." << std::endl;
@@ -25,7 +25,7 @@ void replaceOccurrence(const std::string& filename, const std::string& s1, const
 	}
 
 	// Write Modified Content to a New File
-	std::ofstream outputFile((filename + ".replace").c_str());
+	std::ofstream outputFile((filename + ".replace"));
 	if (!outputFile.is_open()) {
 		std::cerr << "Error: Couldn't create the output file." << std::endl;
 		return;

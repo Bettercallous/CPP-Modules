@@ -3,11 +3,11 @@
 Weapon::Weapon() {}
 
 Weapon::Weapon(std::string str) {
-	type = str;
+	this->type = str;
 }
 
 const std::string& Weapon::getType() {
-	return type;
+	return this->type;
 }
 
 void Weapon::setType(std::string type) {
