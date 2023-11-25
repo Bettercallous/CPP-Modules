@@ -21,10 +21,3 @@ int main()
 	}
 	return 0;
 }
-/*
-	The setWeapon function currently creates a new Weapon object dynamically
-	using new, which means weapon inside HumanB is a pointer to a dynamically allocated Weapon object.
-	However, when you call setType on the original club object outside the HumanB class,
-	you're modifying the original Weapon object, not the one pointed to by weapon inside HumanB.
-	Therefore, the change made to club doesn't affect the weapon object held by HumanB.
-*/

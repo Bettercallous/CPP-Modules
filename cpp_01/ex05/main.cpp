@@ -7,7 +7,7 @@ int main()
 	std::cout << "Enter level: ";
 	getline(std::cin, level);
 	harl.complain(level);
-	// tests //
+	/* // tests //
 	std::cout << "------- Testing -------" << std::endl;
 	std::cout << "DEBUG level: " << std::endl;
 	harl.complain("DEBUG");
@@ -17,6 +17,6 @@ int main()
 	harl.complain("WARNING");
 	std::cout << "ERROR level: " << std::endl;
 	harl.complain("ERROR");
-	std::cout << "------------------------" << std::endl;
+	std::cout << "------------------------" << std::endl; */
 	return 0;
 }

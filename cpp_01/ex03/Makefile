@@ -1,5 +1,5 @@
 
-NAME = violance
+NAME = violence
 
 SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
@@ -7,12 +7,12 @@ OBJ = ${SRC:.cpp=.o}
 
 CXX = c++
 
-FLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CXX) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean :
 	rm -rf *.o
