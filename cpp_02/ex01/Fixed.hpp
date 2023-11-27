@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 
 class Fixed {
 	private:
@@ -10,15 +11,18 @@ class Fixed {
 	public:
 		Fixed();
 		Fixed(const Fixed& other);
-		Fixed(const int num); // converts to fixed point
-		Fixed(const float num);
+		Fixed& operator=(const Fixed& f);
 		~Fixed();
-		void	operator=(const Fixed& f);
-		void	operator<<(std::ostream& os);
+
+		Fixed(const int num);
+		Fixed(const float num);
+		
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
-		float	toFloat( void ) const; //  converts the fixed-point value to a floating-point value.
-		int		toInt( void ) const; //  converts the fixed-point value to an integer value
+		float	toFloat() const;
+		int		toInt() const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Fixed& f);
 
 #endif
