@@ -52,3 +52,42 @@ int Fixed::toInt() const {
 	return getRawBits() >> fractionalBits;
 }
 
+bool Fixed::operator< (const Fixed& f) {
+	return this->fixedPoint < f.fixedPoint;
+}
+
+bool Fixed::operator> (const Fixed& f) {
+	return this->fixedPoint > f.fixedPoint;
+}
+
+bool Fixed::operator<=(const Fixed& f) {
+	return this->fixedPoint <= f.fixedPoint;
+}
+
+bool Fixed::operator>=(const Fixed& f) {
+	return this->fixedPoint >= f.fixedPoint;
+}
+
+bool Fixed::operator==(const Fixed& f) {
+	return this->fixedPoint == f.fixedPoint;
+}
+
+bool Fixed::operator!=(const Fixed& f) {
+	return this->fixedPoint != f.fixedPoint;
+}
+
+Fixed Fixed::operator+(const Fixed& f) const {
+
+}
+
+Fixed Fixed::operator-(const Fixed& f) const {
+
+}
+
+Fixed Fixed::operator*(const Fixed& f) const {
+
+}
+
+Fixed Fixed::operator/(const Fixed& f) const {
+
+}
