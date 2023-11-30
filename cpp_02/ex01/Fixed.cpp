@@ -3,7 +3,7 @@
 const int Fixed::fractionalBits = 8;
 
 Fixed::Fixed() {
-	this->fixedPoint = 0;
+	this->fixedPoint = 0; 
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -14,12 +14,12 @@ Fixed::Fixed(const Fixed& other) {
 
 Fixed::Fixed(const int num) {
 	std::cout << "Int constructor called" << std::endl;
-	this->fixedPoint = num * (1 << this->fractionalBits);
+	this->fixedPoint = num << this->fractionalBits;
 }
 
 Fixed::Fixed(const float num) {
 	std::cout << "Float constructor called" << std::endl;
-	this->fixedPoint = roundf(num * (1 << this->fractionalBits));
+	this->fixedPoint = roundf(num * 256);
 }
 
 Fixed& Fixed::operator=(const Fixed& f) {
@@ -45,7 +45,7 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat() const {
-	return (float)getRawBits() / (1 << fractionalBits);
+	return (float)getRawBits() / 256;
 }
 
 int Fixed::toInt() const {

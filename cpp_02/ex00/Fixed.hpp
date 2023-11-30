@@ -4,16 +4,16 @@
 # include <iostream>
 
 class Fixed {
-    private:
-        int fixedPoint;
-        static const int fractionalBits;
-    public:
-        Fixed();
-        Fixed(const Fixed& other);
-        Fixed& operator=(const Fixed& f);
-        ~Fixed();
-        int getRawBits(void) const;
-        void setRawBits(int const raw);
+	private:
+		int fixedPoint;
+		static const int fractionalBits;
+	public:
+		Fixed();
+		Fixed(const Fixed& other);
+		Fixed& operator=(const Fixed& f);
+		~Fixed();
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
 };
 
 #endif
