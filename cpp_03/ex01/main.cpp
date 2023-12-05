@@ -3,21 +3,17 @@
 
 int main()
 {
-	ScavTrap a;
-    ScavTrap b("alaoui2");
-	// a.attack("alaoui2");
-	// a.attack("alaoui2");
-	// a.takeDamage(2);
-	// a.beRepaired(1);
-    a = b;
-    // b.attack("alaoui");
-    a.attack("alaoui");
-    // b.takeDamage(1);
-    // b.beRepaired(1);
-    for (int i = 0; i < 5; ++i)
-    {
-	    // a.attack("alaoui2");
-        b.attack("alaoui");
-    }
-    b.guardGate();
+    ScavTrap t("alaoui");
+    ScavTrap t2(t);
+    ScavTrap t3 = t2;
+
+    t3.printStats();
+    t3.attack("alaoui 2");
+    t3.printStats();
+
+    t3.takeDamage(2);
+    t3.beRepaired(1);
+    t3.printStats();
+    t3.guardGate();
+    t2.guardGate();
 }

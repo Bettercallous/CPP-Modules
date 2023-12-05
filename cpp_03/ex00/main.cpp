@@ -2,19 +2,13 @@
 
 int main()
 {
-	ClapTrap a("alaoui");
+    ClapTrap t("alaoui");
+    ClapTrap t2(t);
+    ClapTrap t3 = t2;
 
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.takeDamage(2);
-	a.beRepaired(1);
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.attack("alaoui2");
-	a.attack("alaoui2");
+
+    t3.attack("alaoui 2");
+
+    t3.takeDamage(2);
+    t3.beRepaired(1);
 }
