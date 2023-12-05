@@ -3,15 +3,17 @@
 
 int main()
 {
-	// ClapTrap a("alaoui");
+	ScavTrap a;
     ScavTrap b("alaoui2");
 	// a.attack("alaoui2");
 	// a.attack("alaoui2");
 	// a.takeDamage(2);
 	// a.beRepaired(1);
-    b.attack("alaoui");
-    b.takeDamage(1);
-    b.beRepaired(1);
+    a = b;
+    // b.attack("alaoui");
+    a.attack("alaoui");
+    // b.takeDamage(1);
+    // b.beRepaired(1);
     for (int i = 0; i < 5; ++i)
     {
 	    // a.attack("alaoui2");
