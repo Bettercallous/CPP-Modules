@@ -4,20 +4,18 @@
 
 int main()
 {
-	// ScavTrap a;
-    FragTrap b("alaoui2");
-	// a.attack("alaoui2");
-	// a.attack("alaoui2");
-	// a.takeDamage(2);
-	// a.beRepaired(1);
-    // b.attack("alaoui");
-    // b.attack("alaoui");
-    // b.takeDamage(1);
-    // b.beRepaired(1);
-    for (int i = 0; i < 5; ++i)
-    {
-	    // a.attack("alaoui2");
-        b.attack("alaoui");
-    }
-    b.highFivesGuys();
+    FragTrap t("alaoui");
+    FragTrap t2(t);
+    FragTrap t3 = t2;
+
+
+    t3.printStats();
+    t3.attack("alaoui 2");
+    t3.printStats();
+
+    t3.takeDamage(2);
+    t3.beRepaired(1);
+    t3.printStats();
+    t3.highFivesGuys();
+    t3.highFivesGuys();
 }
