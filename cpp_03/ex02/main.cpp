@@ -8,8 +8,11 @@ int main()
     FragTrap t2(t);
     FragTrap t3 = t2;
 
+    ScavTrap a("aaaa");
+    ScavTrap b(a);
 
-    t3.printStats();
+    a.printStats();
+    b.printStats();
     t3.attack("alaoui 2");
     t3.printStats();
 

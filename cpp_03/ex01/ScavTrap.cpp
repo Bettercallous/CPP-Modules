@@ -19,8 +19,8 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
-	std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	ClapTrap::operator=(other);
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	return *this;
 }
 
@@ -29,10 +29,10 @@ ScavTrap::~ScavTrap() {
 }
 
 void ScavTrap::attack(const std::string& target) {
-	if (energyPoints <= 0)
-		std::cout << ">> ScavTrap " << name << " has no energy left to attack <<" << std::endl;
-	else if (hitPoints <= 0)
+	if (hitPoints <= 0)
 		std::cout << ">> ScavTrap " << name << " is already dead <<" << std::endl;
+	else if (energyPoints <= 0)
+		std::cout << ">> ScavTrap " << name << " has no energy left to attack <<" << std::endl;
 	else {
 		std::cout << ">> ScavTrap " << name << " attacks " << target << " causing "
 				  << attackDamage <<  " points of damage ! <<" << std::endl;
