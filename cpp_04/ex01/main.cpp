@@ -36,7 +36,7 @@ int main()
         animals[i].~Animal();
     }
 
-    // delete[] animals;
+    delete[] animals;
 
     return 0;
 }
