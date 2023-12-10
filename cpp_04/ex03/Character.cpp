@@ -55,10 +55,21 @@ Character::~Character() {
 	}
 }
 
-void Character::learnMateria(AMateria*) {
+void Character::equip(AMateria* m) {
+	if (!m) 
+		return ;
+	for (int i = 0; i < 3; i++) {
+		if (this->materias[i] == NULL) {
+			this->materias[i] = m;
+			break;
+		}
+	}
+}
+
+void Character::unequip(int idx) {
 
 }
 
-AMateria* Character::createMateria(std::string const & type) {
-
+void Character::use(int idx, ICharacter& target) {
+	
 }

@@ -13,8 +13,11 @@ class Character : public ICharacter {
 		Character(const Character & other);
 		Character& operator=(const Character & other);
 		~Character();
-		void learnMateria(AMateria*);
-		AMateria* createMateria(std::string const & type);
+
+		std::string const & getName() const;
+        void equip(AMateria* m);
+        void unequip(int idx);
+        void use(int idx, ICharacter& target);
 
 };
 

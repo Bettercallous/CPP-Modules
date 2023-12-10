@@ -1,7 +1,7 @@
 
 NAME = 	Materia
 
-SRC = main.cpp 
+SRC = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp Materiasource.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
