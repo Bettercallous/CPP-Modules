@@ -2,7 +2,7 @@
 
 Character::Character() {
 	// std::cout << "Character default constructor called" << std::endl;
-	this->name = "Character default";
+	this->name = "Default";
 	for (int i = 0; i < 4; i++) {
 		this->materials[i] = NULL;
 	}
@@ -16,18 +16,18 @@ Character::Character(std::string name) {
 	}
 }
 
-Character::Character(const Character& other) {
+Character::Character(const Character& other) : ICharacter(other) {
 	// std::cout << "Character copy constructor called" << std::endl;
 	this->name = other.name;
-	for (int i = 0; i < 4; i++) {
-		if (other.materials[i] != NULL) {
+	for (int i = 0; i < 4; i++)
+        this->materials[i] = NULL;
+	for (int i = 0; i < 4; i++)
 			this->materials[i] = other.materials[i]->clone();
-		}
-	}
 }
 
 Character& Character::operator=(const Character& other) {
 	// std::cout << "Character copy assignment operator called" << std::endl;
+	// this->name = other.name;
 	if (this != &other) {
 
 		for (int i = 0; i < 4; i++) {
@@ -35,11 +35,9 @@ Character& Character::operator=(const Character& other) {
 			this->materials[i] = NULL;
 		}
 
-		name = other.name;
 		for (int i = 0; i < 4; i++) {
-			if (other.materials[i] != NULL) {
+			if (other.materials[i] != NULL)
 				this->materials[i] = other.materials[i]->clone();
-			}
 		}
 	}
 	return *this;
@@ -47,7 +45,7 @@ Character& Character::operator=(const Character& other) {
 
 Character::~Character() {
 	for (int i = 0; i < 4; i++) {
-		delete materials[i];
+		delete this->materials[i];
 	}
 }
 
@@ -73,11 +71,10 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	ICharacter *p = &target; //
-	if (!p) //
+	ICharacter *p = &target;
+	if (!p)
 		return;
 	if (idx >= 0 && idx < 4 && this->materials[idx]) {
-		std::cout << "alo" << std::endl;
 		this->materials[idx]->use(target);
 	}
 }

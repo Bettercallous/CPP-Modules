@@ -1,14 +1,8 @@
 #include "Ice.hpp"
 #include "ICharacter.hpp"
 
-Ice::Ice() {
+Ice::Ice() : AMateria("ice") {
 	// std::cout << "Ice default constructor called" << std::endl;
-	this->type = "ice";
-}
-
-Ice::Ice(std::string const& type) {
-	// std::cout << "Ice constructor called" << std::endl;
-	this->type = type;
 }
 
 Ice::Ice(const Ice& other) : AMateria(other) {
@@ -24,10 +18,6 @@ Ice& Ice::operator=(const Ice& other) {
 Ice::~Ice() {
 	// std::cout << "Ice destructor called" << std::endl;
 }
-
-// std::string const& Ice::getType() const {
-// 	return this->type;
-// }
 
 void Ice::use(ICharacter& target) {
 	ICharacter *p = &target;
