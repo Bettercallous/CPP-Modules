@@ -1,9 +1,12 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
 
+#include <iostream>
 #include "IMateriaSource.hpp"
+#include "AMateria.hpp"
 
-class MateriaSource : IMateriaSource {
+class MateriaSource : public IMateriaSource
+{
 	private:
 		AMateria *materias[4];
 	public:
