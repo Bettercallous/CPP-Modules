@@ -13,8 +13,8 @@ class Ice : public AMateria {
 		Ice& operator=(const Ice& other);
 		~Ice();
 
-		std::string const& getType() const;
-		Ice* clone() const;
+		// std::string const& getType() const;
+		AMateria* clone() const;
 		void use(ICharacter& target);
 };
 

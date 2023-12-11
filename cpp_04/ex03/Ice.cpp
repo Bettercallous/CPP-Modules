@@ -25,9 +25,9 @@ Ice::~Ice() {
 	// std::cout << "Ice destructor called" << std::endl;
 }
 
-std::string const& Ice::getType() const {
-	return this->type;
-}
+// std::string const& Ice::getType() const {
+// 	return this->type;
+// }
 
 void Ice::use(ICharacter& target) {
 	ICharacter *p = &target;
@@ -35,6 +35,6 @@ void Ice::use(ICharacter& target) {
 		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl; 
 }
 
-Ice* Ice::clone() const {
-	return new Ice();
+AMateria* Ice::clone() const {
+	return (new Ice());
 }

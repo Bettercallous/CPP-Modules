@@ -25,9 +25,9 @@ Cure::~Cure() {
 	// std::cout << "Cure destructor called" << std::endl;
 }
 
-std::string const& Cure::getType() const {
-	return this->type;
-}
+// std::string const& Cure::getType() const {
+// 	return this->type;
+// }
 
 void Cure::use(ICharacter& target) {
     ICharacter *p = &target;
@@ -35,7 +35,7 @@ void Cure::use(ICharacter& target) {
         std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
 
-Cure* Cure::clone() const {
-    return new Cure();
+AMateria* Cure::clone() const {
+    return (new Cure());
 }
 

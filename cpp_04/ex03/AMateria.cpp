@@ -3,7 +3,7 @@
 
 AMateria::AMateria() {
 	// std::cout << "AMateria default constructor called" << std::endl;
-	this->type = "-";
+	this->type = "AMateria default";
 }
 
 AMateria::AMateria(std::string const& type) {
@@ -33,4 +33,5 @@ std::string const& AMateria::getType() const {
 
 void AMateria::use(ICharacter& target) {
 	(void)target;
+	// std::cout << "* Shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
