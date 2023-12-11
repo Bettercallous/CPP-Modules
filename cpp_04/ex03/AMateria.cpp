@@ -32,14 +32,5 @@ std::string const& AMateria::getType() const {
 }
 
 void AMateria::use(ICharacter& target) {
-    std::string type = getType();
-    std::string targetName = target.getName();
-
-    if (type == "ice") {
-        std::cout << "* shoots an ice bolt at " << targetName << " *" << std::endl;
-    } else if (type == "cure") {
-        std::cout << "* heals " << targetName << "'s wounds *" << std::endl;
-    } else {
-        std::cout << "Unknown materia type" << std::endl;
-    }
+	(void)target;
 }

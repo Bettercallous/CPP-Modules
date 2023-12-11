@@ -2,9 +2,9 @@
 
 Character::Character() {
 	// std::cout << "Character default constructor called" << std::endl;
-	this->name = "";
+	this->name = "-";
 	for (int i = 0; i < 4; i++) {
-		this->materias[i] = NULL;
+		this->materials[i] = NULL;
 	}
 }
 
@@ -12,7 +12,7 @@ Character::Character(std::string name) {
 	// std::cout << "Character constructor called" << std::endl;
 	this->name = name;
 	for (int i = 0; i < 4; i++) {
-		this->materias[i] = NULL;
+		this->materials[i] = NULL;
 	}
 }
 
@@ -20,10 +20,10 @@ Character::Character(const Character& other) {
 	// std::cout << "Character copy constructor called" << std::endl;
 	this->name = other.name;
 	for (int i = 0; i < 4; ++i) {
-		if (other.materias[i] != NULL) {
-			materias[i] = other.materias[i]->clone();
+		if (other.materials[i] != NULL) {
+			this->materials[i] = other.materials[i]->clone();
 		} else {
-			materias[i] = NULL;
+			this->materials[i] = NULL;  // [...]
 		}
 	}
 }
@@ -31,18 +31,16 @@ Character::Character(const Character& other) {
 Character& Character::operator=(const Character& other) {
 	// std::cout << "Character copy assignment operator called" << std::endl;
 	if (this != &other) {
-		// Delete existing resources
+
 		for (int i = 0; i < 4; ++i) {
-			delete materias[i];
+			delete this->materials[i];
+			this->materials[i] = NULL;
 		}
 
-		// Copy data from the other object
 		name = other.name;
 		for (int i = 0; i < 4; ++i) {
-			if (other.materias[i] != NULL) {
-				materias[i] = other.materias[i]->clone();
-			} else {
-				materias[i] = NULL;
+			if (other.materials[i] != NULL) {
+				this->materials[i] = other.materials[i]->clone();
 			}
 		}
 	}
@@ -51,7 +49,7 @@ Character& Character::operator=(const Character& other) {
 
 Character::~Character() {
 	for (int i = 0; i < 4; ++i) {
-		delete materias[i];
+		delete materials[i];
 	}
 }
 
@@ -63,8 +61,8 @@ void Character::equip(AMateria* m) {
 	if (!m) 
 		return ;
 	for (int i = 0; i < 3; i++) {
-		if (this->materias[i] == NULL) {
-			this->materias[i] = m->clone();
+		if (this->materials[i] == NULL) {
+			this->materials[i] = m;
 			break;
 		}
 	}
@@ -72,16 +70,15 @@ void Character::equip(AMateria* m) {
 
 void Character::unequip(int idx) {
 	if (idx >= 0 && idx < 4) {
-		delete materias[idx];
-		materias[idx] = NULL;
+		this->materials[idx] = NULL;
 	}
 }
 
 void Character::use(int idx, ICharacter& target) {
-	ICharacter *p = &target;
-	if (!p)
+	ICharacter *p = &target; //
+	if (!p) //
 		return;
-	if (idx >= 0 && idx < 4 && materias[idx] != NULL) {
-		materias[idx]->use(target);
+	if (idx >= 0 && idx < 4 && this->materials[idx]) {
+		this->materials[idx]->use(target);
 	}
 }

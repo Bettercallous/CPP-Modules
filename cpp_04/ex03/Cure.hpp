@@ -13,7 +13,7 @@ class Cure : public AMateria {
 		Cure& operator=(const Cure& other);
 		~Cure();
 
-		std::string const& getType() const; // Returns the materia type
+		std::string const& getType() const;
 		Cure* clone() const;
 		void use(ICharacter& target);
 };
