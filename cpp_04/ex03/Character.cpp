@@ -16,11 +16,11 @@ Character::Character(std::string name) {
 	}
 }
 
-Character::Character(const Character& other) : ICharacter(other) {
+Character::Character(const Character& other) {
 	// std::cout << "Character copy constructor called" << std::endl;
 	this->name = other.name;
 	for (int i = 0; i < 4; i++)
-        this->materials[i] = NULL;
+		this->materials[i] = NULL;
 	for (int i = 0; i < 4; i++)
 			this->materials[i] = other.materials[i]->clone();
 }
