@@ -3,7 +3,7 @@
 
 AMateria::AMateria() {
 	// std::cout << "AMateria default constructor called" << std::endl;
-	this->type = "Default";
+	this->type = "Unnamed";
 }
 
 AMateria::AMateria(std::string const& type) {

@@ -1,6 +1,5 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
@@ -12,7 +11,7 @@ int main()
     delete b;
     std::cout << "---------------------------------" << std::endl;
 
-    Animal **animals = new Animal*[10];
+    Animal *animals[10];
 
     for (int i = 0; i < 5; i++) {
         animals[i] = new Cat();
@@ -33,20 +32,20 @@ int main()
         delete animals[i];
     }
 
-    delete[] animals;
+    // std::cout << "----------Deep copy test----------" << std::endl;
 
-    std::cout << "---------Deep copy test---------" << std::endl;
+    // Animal* _dog = new Dog();
+    // Animal* _cat = new Cat();
 
-    Animal* _dog = new Dog();
-    Animal* _cat = new Cat();
+    // std::cout << "_dog type: " << _dog->getType() << std::endl ;
+    // std::cout << "_cat type: " << _cat->getType() << std::endl ;
+    // *_dog = *_cat;
+    // // _dog->setType("something");
+    // std::cout << "_dog type: " << _dog->getType() << std::endl ;
+    // std::cout << "_cat type: " << _cat->getType() << std::endl ;
 
-    std::cout << "_dog type: " << _dog->getType() << std::endl ;
-    std::cout << "_cat type: " << _cat->getType() << std::endl ;
-    *_dog = *_cat;
-    _dog->setType("something");
-    std::cout << "_dog type: " << _dog->getType() << std::endl ;
-    std::cout << "_cat type: " << _cat->getType() << std::endl ;
-
+    // delete _cat;
+    // delete _dog;
     std::cout << "---------------------------------" << std::endl;
 
     return 0;
