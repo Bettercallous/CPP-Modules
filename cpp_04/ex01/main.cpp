@@ -3,50 +3,44 @@
 
 int main()
 {
-    std::cout << "---------------------------------" << std::endl;
-    const Animal* a = new Dog();
-    const Animal* b = new Cat();
-    std::cout << "---------------------------------" << std::endl;
-    delete a;
-    delete b;
-    std::cout << "---------------------------------" << std::endl;
+	std::cout << "---------------------------------" << std::endl;
+	const Animal* a = new Dog();
+	const Animal* b = new Cat();
+	std::cout << "---------------------------------" << std::endl;
+	delete a;
+	delete b;
+	std::cout << "---------------------------------" << std::endl;
 
-    Animal *animals[10];
+	Animal *animals[10];
 
-    for (int i = 0; i < 5; i++) {
-        animals[i] = new Cat();
-    }
-    std::cout << "---------------------------------" << std::endl;
-    for (int i = 5; i < 10; i++) {
-        animals[i] = new Dog();
-    }
+	for (int i = 0; i < 5; i++) {
+		animals[i] = new Cat();
+	}
+	std::cout << "---------------------------------" << std::endl;
+	for (int i = 5; i < 10; i++) {
+		animals[i] = new Dog();
+	}
 
-    std::cout << "---------------------------------" << std::endl;
-    for (int i = 0; i < 10; i++) {
-        std::cout << animals[i]->getType() << " " << i + 1 << " says ";
-        animals[i]->makeSound(); 
-    }
-    std::cout << "---------------------------------" << std::endl;
+	std::cout << "---------------------------------" << std::endl;
+	for (int i = 0; i < 10; i++) {
+		std::cout << animals[i]->getType() << " says ";
+		animals[i]->makeSound(); 
+	}
+	std::cout << "---------------------------------" << std::endl;
 
-    for (int i = 0; i < 10; i++) {
-        delete animals[i];
-    }
+	for (int i = 0; i < 10; i++) {
+		delete animals[i];
+	}
 
-    // std::cout << "----------Deep copy test----------" << std::endl;
+	// std::cout << "----------Deep copy test----------" << std::endl;
 
-    // Animal* _dog = new Dog();
-    // Animal* _cat = new Cat();
+	// Dog basic;
+	// {
+	// 	Dog tmp = basic;
+	// }
+	// basic.getBrain()->printIdeas();
 
-    // std::cout << "_dog type: " << _dog->getType() << std::endl ;
-    // std::cout << "_cat type: " << _cat->getType() << std::endl ;
-    // *_dog = *_cat;
-    // // _dog->setType("something");
-    // std::cout << "_dog type: " << _dog->getType() << std::endl ;
-    // std::cout << "_cat type: " << _cat->getType() << std::endl ;
-
-    // delete _cat;
-    // delete _dog;
-    std::cout << "---------------------------------" << std::endl;
-
-    return 0;
+	while (1);
+	std::cout << "---------------------------------" << std::endl;
+	return 0;
 }

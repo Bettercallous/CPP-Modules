@@ -5,16 +5,16 @@
 # include "Brain.hpp"
 
 class Dog : public Animal {
-    public:
-        Brain *brain;
-    public:
-        Dog();
-        Dog(const Dog& other);
-        Dog& operator=(const Dog& other);
-        ~Dog();
+	public:
+		Brain *brain;
+	public:
+		Dog();
+		Dog(const Dog& other);
+		Dog& operator=(const Dog& other);
+		~Dog();
 
-        std::string getType() const;
-        void makeSound() const;
+		std::string getType() const;
+		void makeSound() const;
 };
 
 #endif
