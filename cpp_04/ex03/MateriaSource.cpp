@@ -52,7 +52,7 @@ void MateriaSource::learnMateria(AMateria* m) {
 	for (int i = 0; i < 4; i++) {
 		if (!this->materials[i]) {
 			this->materials[i] = m;
-			break;
+			return;
 		}
 	}
 	delete m;
