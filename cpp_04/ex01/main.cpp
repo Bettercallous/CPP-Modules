@@ -40,7 +40,6 @@ int main()
 	// }
 	// basic.getBrain()->printIdeas();
 
-	while (1);
 	std::cout << "---------------------------------" << std::endl;
 	return 0;
 }

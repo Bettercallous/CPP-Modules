@@ -28,7 +28,7 @@ int main()
 	}
 	std::cout << "---------------------------------" << std::endl;
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 6; i++) {
 		delete animals[i];
 	}
 
