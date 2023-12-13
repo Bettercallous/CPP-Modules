@@ -13,7 +13,6 @@ class AAnimal {
         virtual ~AAnimal();
 
         std::string getType() const;
-        void setType(std::string type);
         virtual void makeSound() const = 0;
 };
 
