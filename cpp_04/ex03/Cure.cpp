@@ -20,10 +20,6 @@ Cure::~Cure() {
 	// std::cout << "Cure destructor called" << std::endl;
 }
 
-std::string const& Cure::getType() const {
-	return this->type;
-}
-
 void Cure::use(ICharacter& target) {
 	ICharacter *p = &target;
 	if (p)

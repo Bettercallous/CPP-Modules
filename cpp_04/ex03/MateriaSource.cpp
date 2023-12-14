@@ -42,7 +42,6 @@ MateriaSource::~MateriaSource() {
 	for (int i = 0; i < 4; i++) {
 		if (this->materials[i])
 			delete this->materials[i];
-		this->materials[i] = NULL;
 	}
 }
 
