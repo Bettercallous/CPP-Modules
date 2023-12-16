@@ -11,8 +11,9 @@ Cure::Cure(const Cure& other) : AMateria(other) {
 }
 
 Cure& Cure::operator=(const Cure& other) {
-	AMateria::operator=(other);
 	// std::cout << "Cure copy assignment operator called" << std::endl;
+	if (_type != other._type)
+		_type = other._type;
 	return *this;
 }
 

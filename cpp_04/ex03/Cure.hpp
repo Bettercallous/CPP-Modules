@@ -4,8 +4,6 @@
 #include "AMateria.hpp"
 
 class Cure : public AMateria {
-	protected:
-		std::string type;
 	public:
 		Cure();
 		Cure(const Cure& other);

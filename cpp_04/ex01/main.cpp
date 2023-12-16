@@ -24,7 +24,7 @@ int main()
 	std::cout << "---------------------------------" << std::endl;
 	for (int i = 0; i < 6; i++) {
 		std::cout << animals[i]->getType() << " says ";
-		animals[i]->makeSound(); 
+		animals[i]->makeSound();
 	}
 	std::cout << "---------------------------------" << std::endl;
 

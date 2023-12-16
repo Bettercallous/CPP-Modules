@@ -10,8 +10,9 @@ Ice::Ice(const Ice& other) : AMateria(other) {
 }
 
 Ice& Ice::operator=(const Ice& other) {
-	AMateria::operator=(other);
 	// std::cout << "Ice copy assignment operator called" << std::endl;
+	if (_type != other._type)
+		_type = other._type;
 	return *this;
 }
 

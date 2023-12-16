@@ -2,7 +2,7 @@
 
 AAnimal::AAnimal() {
 	std::cout << "AAnimal default constructor called" << std::endl;
-	type = "Unknown Animal";
+	_type = "Unknown Animal";
 }
 
 AAnimal::AAnimal(const AAnimal& other) {
@@ -13,7 +13,7 @@ AAnimal::AAnimal(const AAnimal& other) {
 AAnimal& AAnimal::operator=(const AAnimal& other) {
 	std::cout << "AAnimal copy assignment operator called" << std::endl;
 	if (this != &other)
-		this->type = other.type;
+		_type = other._type;
 	return *this;
 }
 
@@ -22,5 +22,5 @@ AAnimal::~AAnimal() {
 }
 
 std::string AAnimal::getType() const {
-	return this->type;
+	return _type;
 }

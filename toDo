@@ -1,0 +1,97 @@
+everything about inheritance and Polymorphism and the use of everything
+
+vtable
+
+object slicing
+
+
+// initialize list :
+Because the C++ standard says so, the members in a member initializer list are always initialized in the order in which they are defined inside the class (not in the order they are defined in the member initializer list).
+
+
+
+//  a const pointer means it cannot be re-pointed, but the contents of the pointer can be modified.
+
+
+// inheritance can be defined as a process in which objects of child class acquire properties and characteristics from the parent class.
+
+// use : inheritance is used because it helps in removing data redundamcy and increases the reusability of code.
+
+// modes of inheritance : public, protected, private
+
+- public mode : public members of the base class remain public in derived class, same goes for protected members.
+
+- protected mdoe : public and protected base class members will both become protected.
+
+- Private mode : protected and public will become private.
+
++ The choice of inheritance access specifier (public, protected, private) in C++ depends on the desired level of accessibility of base class members in the derived class and the level of encapsulation and abstraction you want to maintain.
+
++ In C++, if a destructor in the base class is marked as virtual, the destructors in the derived classes are implicitly considered virtual, whether explicitly marked as such or not. This behavior applies to the entire inheritance hierarchy.
+
++ Overloading doesn’t work for derived class in the C++ programming language. There is no overload resolution between Base and Derived. The compiler looks into the scope of Derived, finds the single function “double f(double)” and calls it. It never disturbs the (enclosing) scope of Base. In C++, there is no overloading across scopes and derived class scopes are not an exception to this general rule.
+
+
+
+
+Polymorphism is that in which we can perform a task in multiple forms or ways. It is applied to the functions or methods. Polymorphism allows the object to decide which form of the function to implement at compile-time as well as run-time.
+
+Polymorphism is a fundamental concept in object-oriented programming that allows objects of different classes in a hierarchy to be treated as objects of a common base class.
+
+
+When a member function or an object behaves in different manner under different circumstances, then it can be defined as Polymrphism.
+
++ A virtual function is a member function that is declared within a base class and is re-defined (overridden) by a derived class. When you refer to a derived class object using a pointer or a reference to the base class, you can call a virtual function for that object and execute the derived class’s version of the method.
+
++ Rules for Virual functions : 
+    1. Virtual functions cannot be static.
+    2. A virtual function can be a friend function of another class.
+    3. Virtual functions should be accessed using a pointer or reference of base class type to achieve runtime polymorphism.
+    4. The prototype of virtual functions should be the same in the base as well as the derived class.
+    5. They are always defined in the base class and overridden in a derived class. It is not mandatory for the derived class to override (or re-define the virtual function), in that case, the base class version of the function is used.
+    6. A class may have a virtual destructor but it cannot have a virtual constructor.
+
+
+
+
+Sometimes implementation of all functions cannot be provided in a base class because we don’t know the implementation. Such a class is called an abstract class.For example, let Shape be a base class. We cannot provide the implementation of function draw() in Shape, but we know every derived class must have an implementation of draw(). Similarly, an Animal class doesn’t have the implementation of move() (assuming that all animals move), but all animals must know how to move. We cannot create objects of abstract classes.
+
+A pure virtual function (or abstract function) in C++ is a virtual function for which we can have an implementation, But we must override that function in the derived class, otherwise, the derived class will also become an abstract class. A pure virtual function is declared by assigning 0 in the declaration.
+
++ why use virtual functions? 
+to achieve dynamic polymorphism, which is the ability to call a derived class function using a base class poiner or reference
+
+
+// use of inheritance and polymprphism : 
+
+Inheritance and polymorphism are core concepts in object-oriented programming that enable code reuse, extensibility, and flexibility in software development.
+
+Inheritance:
+Code Reusability: Inheritance allows a new class (derived or child class) to inherit properties (attributes and behaviors) from an existing class (base or parent class). It enables the derived class to access and utilize the features of the base class, reducing redundant code and promoting reusability.
+
+Hierarchy and Classification: It facilitates the creation of class hierarchies where classes can be organized based on their relationships and similarities. Derived classes inherit common attributes and behaviors from their base classes, while still being able to introduce their own unique features.
+
+Extension and Specialization: Derived classes can extend or specialize the functionality of base classes. They can add new attributes, methods, or behaviors specific to their context while leveraging the existing functionalities provided by the base class.
+
+Polymorphism:
+Flexibility and Extensibility: Polymorphism allows objects of different classes to be treated as objects of a common base class type through pointers or references. This enables writing code that can work with various objects interchangeably, as long as they share a common interface (via inheritance).
+
+Runtime Binding: With polymorphism achieved through virtual functions, the correct function to be executed is determined at runtime based on the actual type of the object rather than the type of the pointer or reference. This dynamic binding enables flexibility in function calls and facilitates behavior customization in derived classes.
+
+Interfaces and Abstraction: Polymorphism encourages the use of abstract base classes and interfaces, defining a common set of methods that derived classes must implement. This promotes code abstraction, allowing developers to focus on the behavior and interactions of objects without concerning themselves with specific implementations.
+
+Use Cases:
+Extending Functionality: Inheritance allows you to create specialized classes that inherit common functionalities and extend or modify them as needed.
+
+Code Organization: It helps organize code into logical structures, making it more maintainable and easier to understand.
+
+Adaptability and Flexibility: Polymorphism enables writing flexible code that can work with different types of objects, simplifying the addition of new classes without altering existing code.
+
+Implementing Interfaces: Interfaces via abstract base classes ensure that derived classes implement certain methods, enforcing a consistent behavior across different classes.
+
+In essence, inheritance and polymorphism provide powerful tools for creating modular, maintainable, and extensible code by promoting reuse, abstraction, and flexibility in object-oriented programming.
+
+
+
+
+

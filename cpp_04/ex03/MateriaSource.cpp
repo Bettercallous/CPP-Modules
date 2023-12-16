@@ -3,7 +3,7 @@
 MateriaSource::MateriaSource() {
 	// std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++) {
-		this->materials[i] = NULL;
+		_materials[i] = NULL;
 	}
 }
 
@@ -11,10 +11,10 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
 	// std::cout << "MateriaSource copy constructor called" << std::endl;
 
 	for (int i = 0; i < 4; i++) {
-		if (other.materials[i]) {
-			this->materials[i] = other.materials[i]->clone();
+		if (other._materials[i]) {
+			_materials[i] = other._materials[i]->clone();
 		} else {
-			this->materials[i] = NULL;
+			_materials[i] = NULL;
 		}
 	}
 }
@@ -24,13 +24,13 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
 	if (this != &other) {
 
 		for (int i = 0; i < 4; i++) {
-			delete this->materials[i];
-			this->materials[i] = NULL;
+			delete _materials[i];
+			_materials[i] = NULL;
 		}
 
 		for (int i = 0; i < 4; i++) {
-			if (other.materials[i] != NULL) {
-				this->materials[i] = other.materials[i]->clone();
+			if (other._materials[i] != NULL) {
+				_materials[i] = other._materials[i]->clone();
 			}
 		}
 	}
@@ -40,8 +40,8 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
 MateriaSource::~MateriaSource() {
 	// std::cout << "Materiasource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++) {
-		if (this->materials[i])
-			delete this->materials[i];
+		if (_materials[i])
+			delete _materials[i];
 	}
 }
 
@@ -49,8 +49,8 @@ void MateriaSource::learnMateria(AMateria* m) {
 	if (!m)
 		return;
 	for (int i = 0; i < 4; i++) {
-		if (!this->materials[i]) {
-			this->materials[i] = m;
+		if (!_materials[i]) {
+			_materials[i] = m;
 			return;
 		}
 	}
@@ -59,8 +59,8 @@ void MateriaSource::learnMateria(AMateria* m) {
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
 	for (int i = 0; i < 4; i++) {
-		if (this->materials[i] && this->materials[i]->getType() == type) {
-			return this->materials[i]->clone();
+		if (_materials[i] && _materials[i]->getType() == type) {
+			return _materials[i]->clone();
 		}
 	}
 	return NULL;
