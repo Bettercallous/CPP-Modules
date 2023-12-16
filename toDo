@@ -1,9 +1,5 @@
 everything about inheritance and Polymorphism and the use of everything
 
-vtable
-
-object slicing
-
 
 // initialize list :
 Because the C++ standard says so, the members in a member initializer list are always initialized in the order in which they are defined inside the class (not in the order they are defined in the member initializer list).
