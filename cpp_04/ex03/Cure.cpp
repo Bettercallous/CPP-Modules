@@ -7,7 +7,6 @@ Cure::Cure() : AMateria("cure") {
 
 Cure::Cure(const Cure& other) : AMateria(other) {
 	// std::cout << "Cure copy constructor called" << std::endl;
-	*this = other;
 }
 
 Cure& Cure::operator=(const Cure& other) {
