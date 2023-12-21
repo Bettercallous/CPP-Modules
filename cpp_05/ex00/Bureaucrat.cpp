@@ -3,14 +3,14 @@
 class Bureaucrat::GradeTooHighException : public std::exception {
 	public:
 		virtual const char* what() const throw() {
-			return ("can not increment, grade is too high.");
+			return ("Error: grade is too high.");
 		}
 };
 
 class Bureaucrat::GradeTooLowException : public std::exception {
 	public:
 		virtual const char* what() const throw() {
-			return ("can not decrement, grade is too low.");
+			return ("Error: grade is too low.");
 		}
 };
 
