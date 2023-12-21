@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 class Bureaucrat::GradeTooHighException : public std::exception {
 	public:
@@ -65,4 +66,8 @@ void Bureaucrat::decrementGrade() {
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& b) {
 	out << b.getName() << ", bureaucrat grade " << b.getGrade() << "." << std::endl;
 	return out;
+}
+
+void Bureaucrat::signForm(Form & f) {
+
 }
