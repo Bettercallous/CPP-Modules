@@ -3,14 +3,14 @@
 class Form::GradeTooHighException : public std::exception {
 	public:
 		const char* what() const throw() {
-			return ("Error: grade too high.");
+			return ("Grade is too high.");
 		}
 };
 
 class Form::GradeTooLowException : public std::exception {
 	public:
 		const char* what() const throw() {
-			return ("Error: grade too low.");
+			return ("Grade is too low.");
 		}
 };
 
@@ -70,5 +70,7 @@ std::ostream& operator<<(std::ostream& out, const Form& f) {
 }
 
 void Form::beSigned(Bureaucrat& b) {
-
+	if (b.getGrade() > this->getSignGrade())
+		throw GradeTooLowException();
+	this->_isSigned = true;
 }

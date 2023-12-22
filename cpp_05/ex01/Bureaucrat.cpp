@@ -4,14 +4,14 @@
 class Bureaucrat::GradeTooHighException : public std::exception {
 	public:
 		const char* what() const throw() {
-			return ("Error: grade is too high.");
+			return ("Grade is too high.");
 		}
 };
 
 class Bureaucrat::GradeTooLowException : public std::exception {
 	public:
 		const char* what() const throw() {
-			return ("Error: grade is too low.");
+			return ("Grade is too low.");
 		}
 };
 
@@ -69,5 +69,11 @@ std::ostream& operator<<(std::ostream& out, const Bureaucrat& b) {
 }
 
 void Bureaucrat::signForm(Form & f) {
-
+	try {
+		f.beSigned(*this);
+		std::cout << this->_name << " signs " << f.getName() << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << this->_name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+	}
 }
