@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 class Form::GradeTooHighException : public std::exception {
 	public:
@@ -45,11 +46,11 @@ Form::~Form() {
 	// std::cout << "Form destructor called" << std::endl;
 }
 
-const int Form::getSignGrade() const {
+int Form::getSignGrade() const {
 	return _signGrade;
 }
 
-const int Form::getExecGrade() const {
+int Form::getExecGrade() const {
 	return _execGrade;
 }
 

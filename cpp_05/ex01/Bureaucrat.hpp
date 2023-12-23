@@ -2,7 +2,7 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
-class Form;
+# include "Form.hpp"
 
 class Bureaucrat {
 	private:
