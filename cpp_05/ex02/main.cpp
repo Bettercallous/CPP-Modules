@@ -1,17 +1,20 @@
 #include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() 
 {
 	try {
 
-		Bureaucrat b(2, "Juan");
-		Form f("Contract", 1, 1);
+		Bureaucrat b(6, "Juan");
+		PresidentialPardonForm form("contract");
 
-		b.signForm(f);
+		// b.signForm(form);
 
-		b.incrementGrade();
+		// b.incrementGrade();
 
-		b.signForm(f);
+		b.signForm(form);
+
+		b.executeForm(form);
 
 	}
 	catch (std::exception& e) {

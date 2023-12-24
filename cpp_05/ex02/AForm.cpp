@@ -1,20 +1,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-class AForm::GradeTooHighException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("Grade is too high.");
-		}
-};
-
-class AForm::GradeTooLowException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("Grade is too low.");
-		}
-};
-
 AForm::AForm() : _name("Unnamed"), _isSigned(false), _signGrade(150), _execGrade(150) {
 	// std::cout << "AForm default constructor called" << std::endl;
 }
