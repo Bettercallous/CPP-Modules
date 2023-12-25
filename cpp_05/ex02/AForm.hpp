@@ -11,17 +11,20 @@ class AForm {
 		const int _signGrade;
 		const int _execGrade;
 	public:
+
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what() const throw() {
-					return ("grade is too high.");
-				}
+				const char* what() const throw();
 		};
+
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what() const throw() {
-					return ("grade is too low.");
-				}
+				const char* what() const throw();
+		};
+
+		class FormNotSignedException : public std::exception {
+			public:
+				const char* what() const throw();
 		};
 
 		AForm();

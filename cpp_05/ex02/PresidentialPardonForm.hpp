@@ -4,17 +4,11 @@
 #include "AForm.hpp"
 
 class PresidentialPardonForm: public AForm {
+	private:
+		std::string _target;
 	public:
-
-		class FormNotSignedException : public std::exception {
-			public:
-				const char* what() const throw() {
-					return ("form is not signed.");
-				}
-		};
-
 		PresidentialPardonForm();
-		PresidentialPardonForm(std::string name);
+		PresidentialPardonForm(std::string target);
 		PresidentialPardonForm(const PresidentialPardonForm& other);
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 		~PresidentialPardonForm();

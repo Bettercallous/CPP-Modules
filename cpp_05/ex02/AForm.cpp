@@ -23,13 +23,24 @@ AForm::AForm(const AForm & other)
 
 AForm& AForm::operator=(const AForm & other) {
 	// std::cout << "AForm copy assignment operator called" << std::endl;
-	if (this != &other)
-		_isSigned = other._isSigned;
+	_isSigned = other._isSigned;
 	return *this;
 }
 
 AForm::~AForm() {
 	// std::cout << "AForm destructor called" << std::endl;
+}
+
+const char* AForm::GradeTooHighException::what() const throw() {
+	return ("grade is too high.");
+}
+
+const char* AForm::GradeTooLowException::what() const throw() {
+	return ("grade is too low.");
+}
+
+const char* AForm::FormNotSignedException::what() const throw() {
+	return ("form is not signed.");
 }
 
 int AForm::getSignGrade() const {
@@ -49,9 +60,9 @@ bool AForm::getSignature() const {
 }
 
 std::ostream& operator<<(std::ostream& out, const AForm& f) {
-	out << "Form name: " << f.getName() << std::endl;
-	out << "Form is signed: " << f.getSignature() << std::endl;
-	out << "Required grade to sign it: " << f.getSignGrade() << std::endl;
+	out << "Form name:                    " << f.getName() << std::endl;
+	out << "Form is signed:               " << f.getSignature() << std::endl;
+	out << "Required grade to sign it:    " << f.getSignGrade() << std::endl;
 	out << "Required grade to execute it: " << f.getExecGrade() << std::endl;
 	return out;
 }
