@@ -1,6 +1,6 @@
 - std::terminate()
 
-stack unwinding
+
 
 
 
@@ -44,3 +44,57 @@ Note that exception handlers should catch class exception objects by reference i
 
 throw() after a function declaration (like what()) signifies that the function won't throw any exceptions. If an exception is thrown within a function marked as throw(), the program will terminate.
 For instance, if you have throw() specified for a function but an exception is thrown inside it, it will result in a call to std::terminate() and the program will stop.
+
+
+
+Thanks to std::exception, we can set up an exception handler to catch exceptions of type std::exception, and we’ll end up catching std::exception and all of the derived exceptions together in one place. Easy!
+
+- When you throw an exception, it is typically copied to a special place in memory that isn't part of the stack frames, so it isn't popped off as the stack unwinds.
+
+
+Performance concerns
+
+Exceptions do come with a small performance price to pay. They increase the size of your executable, and they may also cause it to run slower due to the additional checking that has to be performed. However, the main performance penalty for exceptions happens when an exception is actually thrown. In this case, the stack must be unwound and an appropriate exception handler found, which is a relatively expensive operation.
+
+As a note, some modern computer architectures support an exception model called zero-cost exceptions. Zero-cost exceptions, if supported, have no additional runtime cost in the non-error case (which is the case we most care about performance). However, they incur an even larger penalty in the case where an exception is found.
+
+So when should I use exceptions?
+
+Exception handling is best used when all of the following are true:
+
+The error being handled is likely to occur only infrequently.
+The error is serious and execution could not continue otherwise.
+The error cannot be handled at the place where it occurs.
+There isn’t a good alternative way to return an error code back to the caller. 
+
+As an example, let’s consider the case where you’ve written a function that expects the user to pass in the name of a file on disk. Your function will open this file, read some data, close the file, and pass back some result to the caller. Now, let’s say the user passes in the name of a file that doesn’t exist, or a null string. Is this a good candidate for an exception?
+
+In this case, the first two bullets above are trivially met -- this isn’t something that’s going to happen often, and your function can’t calculate a result when it doesn’t have any data to work with. The function can’t handle the error either -- it’s not the job of the function to re-prompt the user for a new filename, and that might not even be appropriate, depending on how your program is designed. The fourth bullet is the key -- is there a good alternative way to return an error code back to the caller? It depends on the details of your program. If so (e.g. you can return a null pointer, or a status code to indicate failure), that’s probably the better choice. If not, then an exception would be reasonable.
+
+
+
+Why Exception Handling? 
+The following are the main advantages of exception handling over traditional error handling:
+
+1) Separation of Error Handling code from Normal Code: In traditional error handling codes, there are always if-else conditions to handle errors. These conditions and the code to handle errors get mixed up with the normal flow. This makes the code less readable and maintainable. With try/catch blocks, the code for error handling becomes separate from the normal flow.
+
+2) Functions/Methods can handle only the exceptions they choose: A function can throw many exceptions, but may choose to handle some of them. The other exceptions, which are thrown but not caught, can be handled by the caller. If the caller chooses not to catch them, then the exceptions are handled by the caller of the caller. 
+In C++, a function can specify the exceptions that it throws using the throw keyword. The caller of this function must handle the exception in some way (either by specifying it again or catching it).
+
+3) Grouping of Error Types: In C++, both basic types and objects can be thrown as exceptions. We can create a hierarchy of exception objects, group exceptions in namespaces or classes and categorize them according to their types.
+
+- When an exception is thrown, all objects created inside the enclosing try block are destroyed before the control is transferred to the catch block.
+
+
++ Stack Unwinding is the process of removing function entries from function call stack at run time. The local objects are destroyed in reverse order in which they were constructed. 
+
+Stack Unwinding is generally related to Exception Handling. In C++, when an exception occurs, the function call stack is linearly searched for the exception handler, and all the entries before the function with exception handler are removed from the function call stack. So, exception handling involves Stack Unwinding if an exception is not handled in the same function (where it is thrown). Basically, Stack unwinding is a process of calling the destructors (whenever an exception is thrown) for all the automatic objects constructed at run time. 
+
+
+Note that exception handlers should catch class exception objects by reference instead of by value. This prevents the compiler from making a copy of the exception at the point where it is caught, which can be expensive when the exception is a class object, and prevents object slicing when dealing with derived exception classes. Catching exceptions by pointer should generally be avoided unless you have a specific reason to do so.
+
+Exceptions need to be used exceptionally. If you expect the function to fail often, you don't want to use exception, as calling exception is more resource consuming than returning an error value.
+
+If an exception is thrown in a try block and is not handled by any of its catch blocks, then the Standard Library function `std:: terminate()is called. This function is declared in the exception header and calls a predefined default terminate handler function, which in turn calls the Standard Library functionstd::abort()``` that is declared in the cstdlib header.
+
+Custom terminate handler. The action provided by the default terminate handler can be disastrous in some situations. For example, it may leave files in an unsatisfactory state, or connection to a communications line may be left open. In such cases, you’d want to make sure that things are tidied up properly before the program ends. You can do this by replacing the default terminate handler function with your own version by calling the Standard Library function std::set_terminate().
