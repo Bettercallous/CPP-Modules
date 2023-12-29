@@ -1,18 +1,12 @@
 #include "Bureaucrat.hpp"
 
-class Bureaucrat::GradeTooHighException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("Error: grade is too high.");
-		}
-};
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Error: grade is too high.");
+}
 
-class Bureaucrat::GradeTooLowException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("Error: grade is too low.");
-		}
-};
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Error: grade is too low.");
+}
 
 Bureaucrat::Bureaucrat() : _name("Bureaucrat"), _grade(150) {
 	// std::cout << "Bureaucrat constructor called" << std::endl;

@@ -3,11 +3,11 @@
 #include <cstdlib> // For rand() and srand()
 #include <ctime>   // For time()
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy request", 72, 45), _target("Unnamed") {
+RobotomyRequestForm::RobotomyRequestForm() : AForm("robotomy request", 72, 45), _target("Unnamed") {
 	// std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy request", 72, 45), _target(target) {
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("robotomy request", 72, 45), _target(target) {
 	// std::cout << "RobotomyRequestForm parametrized constructor called" << std::endl;
 }
 

@@ -1,18 +1,12 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-class Bureaucrat::GradeTooHighException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("grade is too high.");
-		}
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Grade is too high.");
 };
 
-class Bureaucrat::GradeTooLowException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("grade is too low.");
-		}
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Grade is too low.");
 };
 
 Bureaucrat::Bureaucrat() : _name("Bureaucrat"), _grade(150) {
@@ -74,7 +68,7 @@ void Bureaucrat::signForm(AForm & f) {
 		std::cout << this->_name << " signs " << f.getName() << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << this->_name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+		std::cerr << this->_name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
 	}
 }
 
@@ -84,6 +78,6 @@ void Bureaucrat::executeForm(AForm const & form) {
 		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << this->_name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
+		std::cerr << this->_name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }

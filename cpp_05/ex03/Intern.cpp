@@ -4,22 +4,22 @@
 #include "ShrubberyCreationForm.hpp"
 
 Intern::Intern() {
-	std::cout << "Intern default constructor called" << std::endl;
+	// std::cout << "Intern default constructor called" << std::endl;
 }
 
 Intern::Intern(const Intern & other) {
-	std::cout << "Intern copy constructor called" << std::endl;
+	// std::cout << "Intern copy constructor called" << std::endl;
 	(void)other;
 }
 
 Intern& Intern::operator=(const Intern & other) {
-	std::cout << "Intern copy assignment operator called" << std::endl;
+	// std::cout << "Intern copy assignment operator called" << std::endl;
 	(void)other;
 	return *this;
 }
 
 Intern::~Intern() {
-	std::cout << "Intern destructor called" << std::endl;
+	// std::cout << "Intern destructor called" << std::endl;
 }
 
 AForm* Intern::createPresidentialPardonForm(const std::string& target) {
@@ -50,7 +50,7 @@ AForm *Intern::makeForm(std::string name, std::string target) {
 	
 	for (size_t i = 0; i < 3; ++i) {
 		if (name == fnames[i]) {
-			std::cout << "Intern creates " << fnames[i] << std::endl;
+			// std::cout << "Intern creates " << fnames[i] << std::endl;
 			return (this->*forms[i])(target);
 		}
 	}

@@ -64,7 +64,7 @@ bool Form::getSignature() const {
 
 std::ostream& operator<<(std::ostream& out, const Form& f) {
 	out << "Form name: " << f.getName() << std::endl;
-	out << "Form is signed: " << f.getSignature() << std::endl;
+	out << "Form is signed: " << (f.getSignature() ? "true" : "false") << std::endl;
 	out << "Required grade to sign it: " << f.getSignGrade() << std::endl;
 	out << "Required grade to execute it: " << f.getExecGrade() << std::endl;
 	return out;

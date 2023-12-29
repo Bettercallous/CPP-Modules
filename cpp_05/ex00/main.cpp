@@ -9,7 +9,7 @@ int main()
 		Bureaucrat a(0, "Juan");
 	}
 	catch (std::exception & e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	std::cout << "-------------------------------------------------------------------------" << std::endl;
@@ -40,7 +40,7 @@ int main()
 		std::cout << "-------------------------------------------------------------------------" << std::endl;
 	}
 	catch (std::exception & e) {
-		std::cout << "* caught the exception : " << e.what() << std::endl;
+		std::cerr << "* caught the exception : " << e.what() << std::endl;
 	}
 	std::cout << "-------------------------------------------------------------------------" << std::endl;
 	std::cout << "- Bureaucrat info: ";
@@ -60,7 +60,7 @@ int main()
 		std::cout << "-------------------------------------------------------------------------" << std::endl;
 	}
 	catch (std::exception & e) {
-		std::cout << "* caught the exception : " << e.what() << std::endl;
+		std::cerr << "* caught the exception : " << e.what() << std::endl;
 	}
 	std::cout << "-------------------------------------------------------------------------" << std::endl;
 
