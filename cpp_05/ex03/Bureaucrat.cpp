@@ -1,31 +1,24 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-class Bureaucrat::GradeTooHighException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("grade is too high.");
-		}
-};
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("grade is too high.");
+}
 
-class Bureaucrat::GradeTooLowException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("grade is too low.");
-		}
-};
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("grade is too low.");
+}
 
 Bureaucrat::Bureaucrat() : _name("Bureaucrat"), _grade(150) {
 	// std::cout << "Bureaucrat constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name) {
+Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name), _grade(grade) {
 	// std::cout << "Bureaucrat constructor called" << std::endl;
 	if (grade > 150)
 		throw GradeTooLowException();
 	if (grade < 1)
 		throw GradeTooHighException();
-	_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat & other) : _name(other._name), _grade(other._grade) {
@@ -34,8 +27,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat & other) : _name(other._name), _grade(ot
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat & other) {
 	// std::cout << "Bureaucrat copy assignment operator called" << std::endl;
-	if (this != &other)
-		_grade = other._grade;
+	_grade = other._grade;
 	return *this;
 }
 

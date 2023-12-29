@@ -1,18 +1,12 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-class Form::GradeTooHighException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("Grade is too high.");
-		}
+const char* Form::GradeTooHighException::what() const throw() {
+	return ("grade is too high.");
 };
 
-class Form::GradeTooLowException : public std::exception {
-	public:
-		const char* what() const throw() {
-			return ("Grade is too low.");
-		}
+const char* Form::GradeTooLowException::what() const throw() {
+	return ("grade is too low.");
 };
 
 Form::Form() : _name("Unnamed"), _isSigned(false), _signGrade(150), _execGrade(150) {

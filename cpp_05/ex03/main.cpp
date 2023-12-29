@@ -4,46 +4,73 @@
 int main()
 {
 	{
-	    Intern intern;
-	    Bureaucrat Juan(5, "Juan");
-	    std::cout << Juan << std::endl;
+		// executing presidential pardon
+		try {
+	    	Intern intern;
+	    	Bureaucrat Juan(5, "Juan");
+	    	std::cout << Juan;
 
-	    AForm   *rrf = intern.makeForm("presidential pardon", "president");
-	    Juan.signForm(*rrf);
-	    Juan.executeForm(*rrf);
-	    delete rrf;
+	    	AForm *rrf = intern.makeForm("presidential pardon", "president");
+	    	Juan.signForm(*rrf);
+	    	Juan.executeForm(*rrf);
+	    	delete rrf;
+		}
+		catch (std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << std::endl;
 	}
 
 	{
-	    Intern intern;
-	    Bureaucrat Juan(5, "Juan");
-	    std::cout << Juan << std::endl;
+		// executing shrubbery creation
+		try {
+	    	Intern intern;
+	    	Bureaucrat Juan(5, "Juan");
+	    	std::cout << Juan;
 
-	    AForm   *rrf = intern.makeForm("shrubbery creation", "home");
-	    Juan.signForm(*rrf);
-	    Juan.executeForm(*rrf);
-	    delete rrf;
+	    	AForm *rrf = intern.makeForm("shrubbery creation", "home");
+	    	Juan.signForm(*rrf);
+	    	Juan.executeForm(*rrf);
+	    	delete rrf;
+		}
+		catch (std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << std::endl;
 	}
 
 	{
-	    Intern intern;
-	    Bureaucrat Juan(5, "Juan");
-	    std::cout << Juan << std::endl;
+		// executing robotomy request
+		try {
+	    	Intern intern;
+	    	Bureaucrat Juan(5, "Juan");
+	    	std::cout << Juan;
 
-	    AForm   *rrf = intern.makeForm("robotomy request", "Bender");
-	    Juan.signForm(*rrf);
-	    Juan.executeForm(*rrf);
-	    delete rrf;
+	    	AForm *rrf = intern.makeForm("robotomy request", "Bender");
+	    	Juan.signForm(*rrf);
+	    	Juan.executeForm(*rrf);
+	    	delete rrf;
+		}
+		catch (std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << std::endl;
 	}
 
-	// fail case
 	{
-		Intern intern;
-		Bureaucrat Juan(5, "Juan");
-		std::cout << Juan << std::endl;
+		// fail case
+		try {
+			Intern intern;
+			Bureaucrat Juan(5, "Juan");
+			std::cout << Juan;
 
-		AForm   *rrf = intern.makeForm("unexisting form", "target");
-		delete rrf;
+			AForm *rrf = intern.makeForm("unexisting form", "target");
+			delete rrf;
+		}
+		catch (std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << std::endl;
 	}
 	// system("leaks Intern");
 	return 0;
