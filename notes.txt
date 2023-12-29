@@ -98,3 +98,12 @@ Exceptions need to be used exceptionally. If you expect the function to fail oft
 If an exception is thrown in a try block and is not handled by any of its catch blocks, then the Standard Library function `std:: terminate()is called. This function is declared in the exception header and calls a predefined default terminate handler function, which in turn calls the Standard Library functionstd::abort()``` that is declared in the cstdlib header.
 
 Custom terminate handler. The action provided by the default terminate handler can be disastrous in some situations. For example, it may leave files in an unsatisfactory state, or connection to a communications line may be left open. In such cases, you’d want to make sure that things are tidied up properly before the program ends. You can do this by replacing the default terminate handler function with your own version by calling the Standard Library function std::set_terminate().
+
+Tests:
+
+ex03 :
+
+makeForm() function
+It will print something like:
+Intern creates <form>
+If the form name passed as parameter doesn’t exist, print an explicit error message 
