@@ -74,3 +74,9 @@ If an exception is thrown in a try block and is not handled by any of its catch 
 
 /// ASK GPT - Custom terminate handler. The action provided by the default terminate handler can be disastrous in some situations. For example, it may leave files in an unsatisfactory state, or connection to a communications line may be left open. In such cases, you’d want to make sure that things are tidied up properly before the program ends. You can do this by replacing the default terminate handler function with your own version by calling the Standard Library function std::set_terminate().
 
+
+
+
+ // Seed the random number generator
+	// Since std::rand() generates numbers from 0 to RAND_MAX and checks if they're even, it effectively creates a 50% chance for the condition
+	// to be true (success) or false (failure). Half of the numbers in that range are even.

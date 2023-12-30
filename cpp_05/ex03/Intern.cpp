@@ -50,8 +50,8 @@ AForm *Intern::makeForm(std::string name, std::string target) {
 
 	for (int i = 0; i < 3; ++i) {
 		if (name == fnames[i]) {
-			// std::cout << "Intern creates " << fnames[i] << std::endl;
-			return (forms[i])(target);
+			std::cout << "Intern creates " << fnames[i] << std::endl;
+			return (*forms[i])(target);
 		}
 	}
 
