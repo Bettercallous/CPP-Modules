@@ -31,8 +31,7 @@ Form::Form(const Form & other)
 
 Form& Form::operator=(const Form & other) {
 	// std::cout << "Form copy assignment operator called" << std::endl;
-	if (this != &other)
-		_isSigned = other._isSigned;
+	_isSigned = other._isSigned;
 	return *this;
 }
 

@@ -22,15 +22,15 @@ Intern::~Intern() {
 	// std::cout << "Intern destructor called" << std::endl;
 }
 
-AForm* Intern::createPresidentialPardonForm(const std::string& target) {
+AForm* createPresidentialPardonForm(const std::string& target) {
 	return new PresidentialPardonForm(target);
 }
 
-AForm* Intern::createRobotomyRequestForm(const std::string& target) {
+AForm* createRobotomyRequestForm(const std::string& target) {
 	return new RobotomyRequestForm(target);
 }
 
-AForm* Intern::createShrubberyCreationForm(const std::string& target) {
+AForm* createShrubberyCreationForm(const std::string& target) {
 	return new ShrubberyCreationForm(target);
 }
 
@@ -42,20 +42,19 @@ AForm *Intern::makeForm(std::string name, std::string target) {
 		"shrubbery creation",
 	};
 
-	AForm* (Intern::*forms[])(const std::string&) = {
-		&Intern::createPresidentialPardonForm,
-		&Intern::createRobotomyRequestForm,
-		&Intern::createShrubberyCreationForm
+	AForm* (*forms[])(const std::string&) = {
+		&createPresidentialPardonForm,
+		&createRobotomyRequestForm,
+		&createShrubberyCreationForm
 	};
-	
-	for (size_t i = 0; i < 3; ++i) {
+
+	for (int i = 0; i < 3; ++i) {
 		if (name == fnames[i]) {
 			// std::cout << "Intern creates " << fnames[i] << std::endl;
-			return (this->*forms[i])(target);
+			return (forms[i])(target);
 		}
 	}
 
 	std::cerr << "Intern cannot create " << name << std::endl;
 	return NULL;
 }
-

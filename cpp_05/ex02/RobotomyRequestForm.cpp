@@ -31,14 +31,12 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 		throw FormNotSignedException();
 	if (executor.getGrade() > this->getExecGrade())
 		throw GradeTooLowException();
-	
-	std::cout << "*...Drilling noises...*" << std::endl;
-	
-	std::srand(std::time(0)); // Seed the random number generator
-	// Since std::rand() generates numbers from 0 to RAND_MAX and checks if they're even, it effectively creates a 50% chance for the condition
-	// to be true (success) or false (failure). Half of the numbers in that range are even.
 
-	if (std::rand() % 2 == 0) // Robotomization success is determined by a 50% chance
+	std::cout << "*...Drilling noises...*" << std::endl;
+
+	std::srand(std::time(0));
+
+	if (std::rand() % 2 == 0)
 		std::cout << _target << " has been robotomized successfully!" << std::endl;
 	else
 		std::cout << "The robotomy of " << _target << " has failed." << std::endl;

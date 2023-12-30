@@ -1,6 +1,8 @@
 - std::terminate()
 - functionstd::abort()
 
+srand()
+rand();
 
 why are exceptions more resource consuming than normal error handling ?
 Exception handling involves additional runtime overhead. Throwing and catching exceptions can be slower compared to traditional error handling mechanisms because it involves stack unwinding and searching for exception handlers. As a result, choosing between exceptions and other error handling mechanisms should consider the trade-offs based on the specific requirements of the application.
