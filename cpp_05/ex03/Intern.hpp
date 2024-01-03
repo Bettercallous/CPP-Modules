@@ -11,6 +11,11 @@ class Intern {
 		~Intern();
 
 		AForm *makeForm(std::string name, std::string target);
+		
+		class FormNotFoundException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 #endif

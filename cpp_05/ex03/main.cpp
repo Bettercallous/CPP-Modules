@@ -16,7 +16,7 @@ int main()
 	    	delete rrf;
 		}
 		catch (std::exception& e) {
-			std::cerr << e.what() << std::endl;
+			std::cerr << "Caught exception: " << e.what() << std::endl;
 		}
 		std::cout << std::endl;
 	}
@@ -34,7 +34,7 @@ int main()
 	    	delete rrf;
 		}
 		catch (std::exception& e) {
-			std::cerr << e.what() << std::endl;
+			std::cerr << "Caught exception: " << e.what() << std::endl;
 		}
 		std::cout << std::endl;
 	}
@@ -52,7 +52,7 @@ int main()
 	    	delete rrf;
 		}
 		catch (std::exception& e) {
-			std::cerr << e.what() << std::endl;
+			std::cerr << "Caught exception: " << e.what() << std::endl;
 		}
 		std::cout << std::endl;
 	}
@@ -65,10 +65,12 @@ int main()
 			std::cout << Juan;
 
 			AForm *rrf = intern.makeForm("unexisting form", "target");
+	    	Juan.signForm(*rrf);
+	    	Juan.executeForm(*rrf);
 			delete rrf;
 		}
 		catch (std::exception& e) {
-			std::cerr << e.what() << std::endl;
+			std::cerr << "Caught exception: " << e.what() << std::endl;
 		}
 		std::cout << std::endl;
 	}

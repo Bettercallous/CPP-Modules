@@ -7,7 +7,7 @@ void gradeOutOfBoundsTest()
 	std::cout << "-----------------------------------------------" << std::endl;
 	// passing an out of bounds grade to form :
 	try {
-		Form f("contract", 0, 5);
+		Form f("contract", 2, 5);
 	}
 	catch (std::exception& e) {
 		std::cerr << "caught the exception : " << e.what() << std::endl;
