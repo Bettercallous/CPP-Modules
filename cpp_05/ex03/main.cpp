@@ -74,6 +74,5 @@ int main()
 		}
 		std::cout << std::endl;
 	}
-	// system("leaks Intern");
 	return 0;
 }

@@ -12,7 +12,6 @@ void invalidGradeToConstructor() {
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "-------------------------------------------------------------------------" << std::endl;
 	std::cout << std::endl;
 }
 
@@ -25,34 +24,25 @@ void incrementHighestGrade() {
 	std::cout << "- Bureaucrat info: ";
 	std::cout << a;
 
-	std::cout << "-------------------------------------------------------------------------" << std::endl;
-	std::cout << ">> Incrementing grade 2 (this is fine, grade will be 1): " << std::endl;
-	std::cout << "-------------------------------------------------------------------------" << std::endl;
+	std::cout << ">> Incrementing grade 2 : " << std::endl;
 	
 	a.incrementGrade();
 	
 	std::cout << "- Bureaucrat info: ";
 	std::cout << a;
-	std::cout << "-------------------------------------------------------------------------" << std::endl;
 
 	try {
-		std::cout << ">> Incrementing grade 1 (this is not fine, an exception will be thrown): " << std::endl;
-		std::cout << "-------------------------------------------------------------------------" << std::endl;
+		std::cout << ">> Incrementing grade 1 : " << std::endl;
 
 		a.incrementGrade();
 
-		std::cout << "-------------------------------------------------------------------------" << std::endl;
 	}
 	catch (std::exception & e) {
 		std::cerr << "* caught the exception : " << e.what() << std::endl;
 	}
-	
-	std::cout << "-------------------------------------------------------------------------" << std::endl;
 
 	std::cout << "- Bureaucrat info: ";
 	std::cout << a;
-
-	std::cout << "-------------------------------------------------------------------------" << std::endl;
 
 	std::cout << std::endl;
 }
@@ -65,10 +55,10 @@ void decrementLowestGrade() {
 	Bureaucrat c(150, "Oz");
 
 	try {
-		std::cout << ">> Incrementing grade 150 will throw an exception: " << std::endl;
-		std::cout << "-------------------------------------------------------------------------" << std::endl;
+		std::cout << ">> Decrementing grade 150 : " << std::endl;
+
 		c.decrementGrade();
-		std::cout << "-------------------------------------------------------------------------" << std::endl;
+
 	}
 	catch (std::exception & e) {
 		std::cerr << "* caught the exception : " << e.what() << std::endl;

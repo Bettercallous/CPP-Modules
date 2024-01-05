@@ -49,6 +49,7 @@ void formsActionsTest()
 	b.executeForm(rob);
 	std::cout << std::endl;
 	b.executeForm(pres);
+	std::cout << "-----------------------------------------------" << std::endl;
 }
 
 int main()
