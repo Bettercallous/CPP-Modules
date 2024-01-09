@@ -1,0 +1,77 @@
+** upcasting and downcasting
+
+
+
+Cast is essentially conversion, which allows us to transform the bits of one type to another type. For instance, int and double are saved differently in bits. To go from one type to the other, the bits need to be converted.
+
+When the compiler does type conversion on our behalf without us explicitly asking, we call this implicit type conversion. The above example illustrates this -- nowhere do we explicitly tell the compiler to convert integer value 5 to double value 5.0. Rather, the function is expecting a double value, and we pass in an integer argument. The compiler will notice the mismatch and implicitly convert the integer to a double.
+
+Even though it is called a conversion, a type conversion does not actually change the value or type of the value being converted. Instead, the value to be converted is used as input, and the conversion results in a new value of the target type (via direct initialization).
+
+C++ supports 5 different types of casts: C-style casts (implicit cast), static casts, const casts, dynamic casts, and reinterpret casts.
+- implicit cast: only conversion of simple values and upcast.
+- static_cast: with downcast and upcast, we know what we want and where we are going from the inheritance tree. This will not prevent crosscast, but gives issues at run time. But it will prevent cast from classes of two different inheritance trees.
+- dynamic_cast: only cast that happens at runtime. It adds certain performance overheads to your program. It takes advantage of rtti(run-time type information). The class must have one virtual member function. It will check if the transform from one form to another is realistic base on the hierarchy. It is one of the base principles, hidden behind the notion of plugin.
+- const_cast: will not be used often. Consider if it's a design flaw when you need to use this cast.
+- reinterpret_cast: the most open cast. No semantics check. The most suitable case is to change the type of some raw data, or you want to convert the type of one data to another type that is usable by your program.
+
+
+<const casts> and <reinterpret casts> should generally be avoided because they are only useful in rare cases and can be harmful if used incorrectly.
+
+
+// C-STYLE CASTS :
+
+double d { double(x) / y }; // convert x to a double so we get floating point division
+
+This performs identically to the C example, but has the benefit of parenthesizing the value being converted (making it easier to tell what is being converted).
+
+Although a C-style cast appears to be a single cast, it can actually perform a variety of different conversions depending on context. This can include a static cast, a const cast or a reinterpret cast (the latter two of which we mentioned above you should avoid). As a result, C-style casts are at risk for being inadvertently misused and not producing the expected behavior, something which is easily avoidable by using the C++ casts instead.
+
+Also, because C-style casts are just a type name, parenthesis, and variable or value, they are both difficult to identify (making your code harder to read) and even more difficult to search for.
+
+
+// STATIC_CAST :
+
+C++ introduces a casting operator called static_cast, which can be used to convert a value of one type to a value of another type.
+
+The static_cast operator takes an expression as input, and returns the evaluated value converted to the type specified inside the angled brackets. static_cast is best used to convert one fundamental type into another.
+
+The main advantage of static_cast is that it provides compile-time type checking, making it harder to make an inadvertent error.
+
+static_cast is also (intentionally) less powerful than C-style casts, so you can’t inadvertently remove const or do other things you may not have intended to do.
+
+
+int i { 48 };
+
+// explicit conversion from int to char, so that a char is assigned to variable ch
+char ch { static_cast<char>(i) };
+
+
+When we do this, we’re explicitly telling the compiler that this conversion is intended, and we accept responsibility for the consequences (e.g. overflowing the range of a char if that happens). Since the output of this static_cast is of type char, the initialization of variable ch doesn’t generate any type mismatches, and hence no warnings or errors.
+
+
+// DYNAMIC_CAST :
+
+When dealing with polymorphism, you’ll often encounter cases where you have a pointer to a base class, but you want to access some information that exists only in a derived class.
+
+C++ provides a casting operator named dynamic_cast that can be used for just this purpose. Although dynamic casts have a few different capabilities, by far the most common use for dynamic casting is for converting base-class pointers into derived-class pointers. This process is called downcasting.
+
+If a dynamic_cast fails, the result of the conversion will be a null pointer.
+
+Note that because dynamic_cast does some consistency checking at runtime (to ensure the conversion can be made), use of dynamic_cast does incur a performance penalty.
+
+dynamic_cast and references: Because C++ does not have a “null reference”, dynamic_cast can’t return a null reference upon failure. Instead, if the dynamic_cast of a reference fails, an exception of type std::bad_cast is thrown. 
+
+- dynamic_cast vs static_cast :
+
+New programmers are sometimes confused about when to use static_cast vs dynamic_cast. The answer is quite simple: use static_cast unless you’re downcasting, in which case dynamic_cast is usually a better choice. However, you should also consider avoiding casting altogether and just use virtual functions.
+
+- Downcasting vs virtual functions : 
+
+There are some developers who believe dynamic_cast is evil and indicative of a bad class design. Instead, these programmers say you should use virtual functions.
+
+In general, using a virtual function should be preferred over downcasting. However, there are times when downcasting is the better choice:
+
++ When you can not modify the base class to add a virtual function (e.g. because the base class is part of the standard library)
++ When you need access to something that is derived-class specific (e.g. an access function that only exists in the derived class)
++ When adding a virtual function to your base class doesn’t make sense (e.g. there is no appropriate value for the base class to return). Using a pure virtual function may be an option here if you don’t need to instantiate the base class.
