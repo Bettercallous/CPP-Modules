@@ -5,8 +5,8 @@ struct Data
 {
     int x;
     int y;
+    float b;
     char c;
-    bool b;
 };
 
 #endif
