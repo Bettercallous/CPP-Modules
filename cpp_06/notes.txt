@@ -30,6 +30,21 @@ Although a C-style cast appears to be a single cast, it can actually perform a v
 Also, because C-style casts are just a type name, parenthesis, and variable or value, they are both difficult to identify (making your code harder to read) and even more difficult to search for.
 
 
+// REINTERPRET_CAST :
+
+It is used to convert a pointer of some data type into a pointer of another data type, even if the data types before and after conversion are different.
+It does not check if the pointer type and data pointed by the pointer is same or not.
+
+- Purpose for using reinterpret_cast :
+
++ reinterpret_cast is a very special and dangerous type of casting operator. And is suggested to use it using proper data type i.e., (pointer data type should be same as original data type).
++ It can typecast any pointer to any other data type.
++ It is used when we want to work with bits.
++ If we use this type of cast then it becomes a non-portable product. So, it is suggested not to use this concept unless required.
++ It is only used to typecast any pointer to its original type.
++ Boolean value will be converted into integer value i.e., 0 for false and 1 for true.
+
+
 // STATIC_CAST :
 
 C++ introduces a casting operator called static_cast, which can be used to convert a value of one type to a value of another type.
