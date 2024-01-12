@@ -3,10 +3,10 @@
 
 struct Data
 {
-    int x;
-    int y;
-    float b;
-    char c;
+	int x;
+	int y;
+	float b;
+	char c;
 };
 
 #endif

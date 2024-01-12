@@ -1,21 +1,18 @@
 #include "Serializer.hpp"
 
-int main()
-{
-    Data data = {5, 10, 3.5, 'A'};
+int main() {
 
-    // int *p = reinterpret_cast<int*>(&data);
+	Data originalData = {42, 99, 3.14f, 'A'};
 
-    // std::cout << *(reinterpret_cast<int*>(p++)) << std::endl;
-    // std::cout << *(reinterpret_cast<int*>(p++)) << std::endl;
-    // std::cout << *(reinterpret_cast<float*>(p++)) << std::endl;
-    // std::cout << *(reinterpret_cast<char*>(p)) << std::endl;
+	uintptr_t serializedData = Serializer::serialize(&originalData);
 
-    uintptr_t i = Serializer::serialize(&data);
-    Data *newData = Serializer::deserialize(i);
+	Data* deserializedData = Serializer::deserialize(serializedData);
 
-    std::cout << &data << std::endl;
-    std::cout << newData << std::endl;
-    
-    return 0;
+	std::cout << "Original Data    : x = " << originalData.x << ", y = " << originalData.y << ", b = "
+			  << originalData.b << ", c = " << originalData.c << ", Address: " << &originalData << std::endl;
+
+	std::cout << "Deserialized Data: x = " << deserializedData->x << ", y = " << deserializedData->y << ", b = "
+			  << deserializedData->b << ", c = " << deserializedData->c<< ", Address: " << deserializedData << std::endl;
+
+	return 0;
 }

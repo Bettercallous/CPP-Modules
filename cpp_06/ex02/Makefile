@@ -1,13 +1,13 @@
 
-NAME = Dynamic
+NAME = dynamic_cast
 
-SRC = main.cpp Base.cpp Utils.cpp
+SRC = main.cpp Base.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 

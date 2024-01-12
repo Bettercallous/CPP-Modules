@@ -1,5 +1,5 @@
 
-NAME = Serialization
+NAME = reinterpret_cast
 
 SRC = main.cpp Serializer.cpp
 
@@ -7,7 +7,7 @@ OBJ = ${SRC:.cpp=.o}
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
