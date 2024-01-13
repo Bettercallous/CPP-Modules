@@ -1,0 +1,21 @@
+why does the base class have to be polymorphic in order to use dynamic_cast? 
+
+The dynamic_cast operator in C++ is primarily used for safe downcasting in polymorphic class hierarchies. It involves checking the actual type of the object at runtime, and this runtime type information (RTTI) is available only for polymorphic classes.
+
+
+When comparing two vtable pointers (vptr), the key factor is whether the objects are of compatible types in terms of the class hierarchy. Specifically, the comparison checks if one type can be considered a base or derived type of the other. This is crucial for ensuring the safety of the dynamic cast operation.
+
+Here are the general considerations:
+
+Base-to-Derived Cast: If you are attempting a dynamic cast from a base class pointer/reference to a derived class pointer/reference, the comparison checks whether the vptr of the derived class is a valid extension of the vptr of the base class. It ensures that the derived class inherits from (or is the same type as) the base class.
+
+Derived-to-Base Cast: If you are attempting a dynamic cast from a derived class pointer/reference to a base class pointer/reference, the comparison checks whether the vptr of the base class is a valid base subobject of the vptr of the derived class. It ensures that the derived class is a valid base class subobject.
+
+In essence, the comparison of vtable pointers verifies that the dynamic type of the object (the actual runtime type) is compatible with the type specified in the dynamic cast operation. If the dynamic types are not compatible, the dynamic cast will fail.
+
+The C++ standard doesn't prescribe the exact details of how vtable pointers are implemented or how the comparison is performed, leaving those details to compiler and platform implementations. The goal is to provide a mechanism for runtime type checking and safe casting in polymorphic class hierarchies.
+
+
+
+
+
