@@ -37,15 +37,15 @@ void identify(Base& p) {
 	try {
 		(void)dynamic_cast<A&>(p);
 		std::cout << "Actual type is A" << std::endl;
-	} catch (const std::bad_cast&) {
+	} catch (const std::exception&) {
 		try {
 			(void)dynamic_cast<B&>(p);
 			std::cout << "Actual type is B" << std::endl;
-		} catch (const std::bad_cast&) {
+		} catch (const std::exception&) {
 			try {
 				(void)dynamic_cast<C&>(p);
 				std::cout << "Actual type is C" << std::endl;
-			} catch (const std::bad_cast&) {
+			} catch (const std::exception&) {
 				std::cerr << "Unknown type" << std::endl;
 			}
 		}
