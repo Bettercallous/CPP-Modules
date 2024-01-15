@@ -55,13 +55,11 @@ void identify(Base& p) {
 int main()
 {
 	Base* generatedObject = generate();
-
-	if (generatedObject) {
-		identify(generatedObject);
-		identify(*generatedObject);
-
-		delete generatedObject;
-	}
+	
+    identify(generatedObject);
+	identify(*generatedObject);
+	
+    delete generatedObject;
 
 	return 0;
 }
