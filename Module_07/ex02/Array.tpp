@@ -27,7 +27,7 @@ Array<T>& Array<T>::operator=(const Array & other) {
 }
 
 template<typename T>
-T& Array<T>::operator[] (unsigned int i) {
+T& Array<T>::operator[] (unsigned int i) const {
     if (i >= this->arrSize)
         throw std::exception();
     return this->arr[i];
@@ -41,4 +41,12 @@ Array<T>::~Array() {
 template<typename T>
 unsigned int Array<T>::size() const {
     return this->arrSize;
+}
+
+template<typename T>
+void Array<T>::printArr() const {
+    for (unsigned int i = 0; i < arrSize; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
 }

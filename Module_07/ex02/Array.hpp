@@ -14,8 +14,9 @@ class Array {
         Array(const Array & other);
         Array& operator=(const Array & other);
         ~Array();
-        T& operator[] (unsigned int i);
+        T& operator[] (unsigned int i) const;
         unsigned int size() const;
+        void printArr() const;
 };
 
 #include "Array.tpp"
