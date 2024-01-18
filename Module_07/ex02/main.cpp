@@ -1,25 +1,44 @@
 #include <iostream>
 #include "Array.hpp"
 
-template <typename T>
-struct Pair
+#define MAX_VAL 750
+int main(int, char**)
 {
-    T first;
-    T second;
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++) {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-    Pair(T f, T s) : first(f), second(s) {}
-};
+    for (int i = 0; i < MAX_VAL; i++) {
+        if (mirror[i] != numbers[i]) {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try {
+        numbers[-2] = 0;
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+    try {
+        numbers[MAX_VAL] = 0;
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
 
-int main()
-{
-    Pair<int> p1(5, 6);        // instantiates Pair<int> and creates object p1
-    std::cout << p1.first << ' ' << p1.second << '\n';
-
-    Pair<double> p2(1.2, 3.4); // instantiates Pair<double> and creates object p2
-    std::cout << p2.first << ' ' << p2.second << '\n';
-
-    Pair<double> p3(7.8, 9.0); // creates object p3 using prior definition for Pair<double>
-    std::cout << p3.first << ' ' << p3.second << '\n';
-
+    for (int i = 0; i < MAX_VAL; i++) {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
     return 0;
 }
+
