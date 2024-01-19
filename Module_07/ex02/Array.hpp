@@ -16,6 +16,11 @@ class Array {
 		~Array();
 		T& operator[] (unsigned int i) const;
 		unsigned int size() const;
+
+		class OutOfBoundsException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 #include "Array.tpp"

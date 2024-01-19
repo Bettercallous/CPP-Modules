@@ -29,7 +29,7 @@ Array<T>& Array<T>::operator=(const Array & other) {
 template<typename T>
 T& Array<T>::operator[] (unsigned int i) const {
 	if (i >= this->arrSize)
-		throw std::exception();
+		throw OutOfBoundsException();
 	return this->arr[i];
 }
 
@@ -41,4 +41,9 @@ Array<T>::~Array() {
 template<typename T>
 unsigned int Array<T>::size() const {
 	return this->arrSize;
+}
+
+template<typename T>
+const char* Array<T>::OutOfBoundsException::what() const throw() {
+	return "Index is out of bounds";
 }
