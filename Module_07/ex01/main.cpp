@@ -1,29 +1,34 @@
 #include "iter.hpp"
 
-template <typename V>
-void fnc(V& c) {
-    c += 1;
+class Awesome
+{
+	public:
+		Awesome( void ) : _n( 42 ) { return; }
+		int get( void ) const { return this->_n; }
+	private:
+		int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+{
+  o << rhs.get();
+  return o;
+}
+
+template< typename T >
+void print( T& x )
+{
+  std::cout << x << std::endl;
+  return;
 }
 
 int main()
 {
-    char str[] = "abcde";
-    iter(str, 5, fnc);
-    std::cout << str << std::endl;
+  int tab[] = { 0, 1, 2, 3, 4 };
+  Awesome tab2[5];
 
-    int arr[] = {1, 2 , 3, 4};
-    iter(arr, 4, fnc);
-    for (int i = 0; i < 4; i++) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
+  iter( tab, 5, print<const int> );
+  iter( tab2, 5, print<Awesome> );
 
-    float arr2[] = {1.5, 2.3, 5.2};
-    iter(arr2, 3, fnc);
-    for (int i = 0; i < 3; i++) {
-        std::cout << arr2[i] << " ";
-    }
-    std::cout << std::endl;
-
-    return 0;
+  return 0;
 }

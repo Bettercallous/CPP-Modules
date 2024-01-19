@@ -4,12 +4,12 @@
 #include <iostream>
 
 template <typename T, typename U>
-void iter(T* arr, U len, void (*funcPtr)(T&))
+void iter(T* arr, size_t len, U f)
 {
-    if (len <= 0)
+    if (!arr || !f)
         return;
-    for (int i = 0; i < len; i++) {
-        funcPtr(arr[i]);
+    for (size_t i = 0; i < len; i++) {
+        f(arr[i]);
     }
 }
 

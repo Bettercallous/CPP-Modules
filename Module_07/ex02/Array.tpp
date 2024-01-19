@@ -1,15 +1,17 @@
 #include "Array.hpp"
 
 template<typename T>
-Array<T>::Array() : arr(new T[0]), arrSize(0) {}
+Array<T>::Array() : arr(NULL), arrSize(0) {}
 
 template<typename T>
 Array<T>::Array(unsigned int n) : arr(new T[n]), arrSize(n) {}
 
 template<typename T>
-Array<T>::Array(const Array & other) : Array(other.arrSize) {
+Array<T>::Array(const Array & other) {
+	arr = new T[other.arrSize];
+	arrSize = other.arrSize;
 	for (unsigned int i = 0; i < arrSize; i++) {
-		this->arr[i] = other.arr[i];
+		arr[i] = other.arr[i];
 	}
 }
 
