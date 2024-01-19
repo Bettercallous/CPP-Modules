@@ -14,12 +14,6 @@ The end result is the same -- we end up with a bunch of mostly-identical functio
 
 - A function template is a function-like definition that is used to generate one or more overloaded functions, each with a different set of actual types. This is what will allow us to create functions that can work with many different types.
 
-- C++ supports 3 different kinds of template parameters:
-
-+ Type template parameters (where the template parameter represents a type).
-+ Non-type template parameters (where the template parameter represents a constexpr value).
-+ Template template parameters (where the template parameter represents a template).
-
 Function templates are not actually functions -- their code isn’t compiled or executed directly. Instead, function templates have one job: to generate functions (that are compiled and executed).
 
 To use our max<T> function template, we can make a function call with the following syntax:

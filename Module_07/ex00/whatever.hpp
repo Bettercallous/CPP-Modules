@@ -5,21 +5,20 @@
 
 template <typename T>
 void swap(T& first, T& second) {
-    T tmp;
-    tmp = first;
-    first = second;
-    second = tmp;
+	T tmp;
+	tmp = first;
+	first = second;
+	second = tmp;
 }
 
 template <typename T>
 T min(T first, T second) {
-    return (first < second) ? first : second;
+	return (first < second) ? first : second;
 }
 
 template <typename T>
 T max(T first, T second) {
-    return (second < first) ? first : second;
+	return (second < first) ? first : second;
 }
-
 
 #endif
