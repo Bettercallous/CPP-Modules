@@ -1,7 +1,7 @@
 
-NAME = array
+NAME = EasyFind
 
-SRC = main.cpp 
+SRC = main.cpp
 
 OBJ = ${SRC:.cpp=.o}
 
