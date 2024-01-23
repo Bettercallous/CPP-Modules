@@ -3,21 +3,26 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <climits>
+#include <exception>
 
 class Span {
     private:
-        std::vector<int> *values;
+        std::vector<int> values;
+        unsigned int capacity;
     public:
         Span();
         Span(unsigned int N);
         Span(const Span & other);
-        Span& operator= (const Span & other);
+        Span& operator=(const Span & other);
         ~Span();
 
         void addNumber(int num);
         int shortestSpan() const;
         int longestSpan() const;
-        //  Implement a member function to add many numbers to your Span in one call.
-}
+        void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        void displayNumbers();
+};
 
 #endif
