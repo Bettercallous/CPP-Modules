@@ -1,9 +1,14 @@
 #include "Span.hpp"
 
+void func(int& i) {
+    i = std::rand();
+}
+
 int main()
 {
+    std::srand(time(0));
     try {
-        Span sp = Span(10);
+        Span sp = Span(100000);
         sp.addNumber(6);
         sp.addNumber(3);
         sp.addNumber(17);
@@ -12,16 +17,13 @@ int main()
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
 
-        std::vector<int> vec;
+        std::vector<int> arr(100000);
+        std::for_each(arr.begin(), arr.end(), func);
 
-        vec.push_back(1);
-        vec.push_back(2);
-        vec.push_back(3);
-        vec.push_back(4);
-
-        sp.addRange(vec.begin(), vec.end());
-
+        sp.addRange(arr.begin() + 5, arr.end());
         sp.displayNumbers();
+        std::cout << std::endl;
+
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;

@@ -2,7 +2,9 @@
 
 Span::Span() : capacity(0) {}
 
-Span::Span(unsigned int N) : capacity(N) {}
+Span::Span(unsigned int N) : capacity(N) {
+    values.reserve(capacity);
+}
 
 Span::Span(const Span & other) : values(other.values), capacity(other.capacity) {}
 
@@ -53,7 +55,14 @@ int Span::longestSpan() const {
 void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
     size_t addedSize = std::distance(begin, end);
     if (values.size() + addedSize > capacity)
-        throw std::out_of_range("Span is full, can't add more numbers");
+        throw std::out_of_range("Not enough space to add the given numbers.");
+    values.insert(values.end(), begin, end);
+}
+
+void Span::addRange(int* begin, int* end) {
+    size_t addedSize = std::distance(begin, end);
+    if (values.size() + addedSize > capacity)
+        throw std::out_of_range("Not enough space to add the given numbers.");
     values.insert(values.end(), begin, end);
 }
 
