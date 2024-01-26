@@ -23,7 +23,6 @@ int main()
         sp.addRange(arr.begin() + 5, arr.end());
         sp.displayNumbers();
         std::cout << std::endl;
-
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
