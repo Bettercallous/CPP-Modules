@@ -1,0 +1,13 @@
+I chose std::map because it provides a convenient way to store key-value pairs, where the keys are dates and the values are exchange rates.
+Additionally, std::map automatically sorts its elements by key, which makes it easy to find the closest date to the input date efficiently
+using lower_bound.
+
+
+ifstream
+istringstream
+pair and make_pair
+
+
+trim
+getEchangeRate
+loadDatabase
