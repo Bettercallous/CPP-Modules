@@ -1,5 +1,7 @@
 #include "BitcoinExchange.hpp"
 
+bool flag = false;
+
 BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange & other) {*this = other;}
@@ -84,6 +86,13 @@ std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(con
         return std::make_pair(false, std::make_pair("", 0));
     }
 
+    if (BitcoinExchange::trim(tokens[0]) == "date" || BitcoinExchange::trim(tokens[1]) == "value") {
+        if (flag == false) {
+            flag = true;
+            return std::make_pair(false, std::make_pair("", 0));
+        }
+    }
+
     double value;
     if (BitcoinExchange::checkValue(value, tokens[1]) == -1) {
         return std::make_pair(false, std::make_pair("", 0));
@@ -99,12 +108,11 @@ std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(con
 int BitcoinExchange::checkValue(double& value, const std::string& valueStr) {
     std::string str = BitcoinExchange::trim(valueStr);
     std::istringstream buf(str);
-    // std::cout << valueStr << isNumeric(valueStr) << std::endl;
+
     if (isNumeric(str, ".0123456789") == false) {
         std::cerr << "Error: invalid number => " << buf.str() << std::endl;
         return -1;
     }
-    // Check if the string is empty
 
     // Check for multiple decimal points
     if (std::count(str.begin(), str.end(), '.') > 1) {
@@ -148,11 +156,16 @@ int BitcoinExchange::checkDate(const std::string& date) {
 
     for (int i = 0; i < 3; i++) {
         if (isNumeric(tokens[i], "0123456789") == false) {
-            std::cout << "alo\n";
             std::cerr << "Error: invalid date." << std::endl;
             return -1;
         }
     }
+
+    if (tokens[0].length() != 4 || tokens[1].length() != 2 || tokens[2].length() != 2) {
+        std::cerr << "Error: invalid date." << std::endl;
+        return -1;
+    }
+
     int tmp;
     std::istringstream(tokens[0]) >> tmp;
     if (tmp < 2009 || tmp > 2022) {

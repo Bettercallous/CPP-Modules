@@ -34,5 +34,4 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-// ISSUES : WHY IS 2012-12-05 DIFFERENT THAN 2012-12-5 ??
 // CHANGE VECTORS TO BASIC ARRAYS
