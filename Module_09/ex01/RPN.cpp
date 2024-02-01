@@ -1,60 +1,41 @@
 #include "RPN.hpp"
 
-static std::string trim(const std::string& str) {
-    size_t first = str.find_first_not_of(' ');
-    if (first == std::string::npos)
-        return str;
-    size_t last = str.find_last_not_of(' ');
-    return str.substr(first, (last - first + 1));
-}
-
-static bool validTokens(const std::string& str) {
-    return str.find_first_not_of("0123456789 /+-*") == std::string::npos;
-}
-
-static bool sufficentOperands(const std::string& input) {
-    int operands = 0;
-    int operators = 0;
-    std::string ops("*/+-");
-
-    for (size_t i = 0; i < input.length(); ++i) {
-        if (isdigit(input[i])) {
-            operands++;
-        }
-        else if (ops.find(input[i]) != std::string::npos)
-            operators++;
-    }
-    if (operands == 1)
+bool processExpression(const std::string& input) {
+    if (input.empty()) {
+        std::cerr << "Error: empty argument" << std::endl;
         return false;
+    }
 
-    return operators == operands - 1;
-}
+    if (input.find_first_not_of("0123456789 /+-*") != std::string::npos) {
+        std::cerr << "Error: invalid RPN expression" << std::endl;
+        return false;
+    }
 
-std::string processExpression(const std::string& input) {
-    
-    if (validTokens(input) == false)
-        return "";
+    for (size_t i = 0; i < input.length() - 1; i++) {
+        if (input[i] != '0') {
+            if (isdigit(input[i]) && isdigit(input[i + 1])) {
+                std::cerr << "Error: numbers must be less than 10" << std::endl;
+                return false;
+            }
+        }
+    }
 
-    if (sufficentOperands(input) == false)
-        return "";
-
-    std::string s(trim(input));
-
-    if (isdigit(s[s.length() - 1]))
-        return "";
-
-    return input;
+    return true;
 }
 
 int executeExpression(const std::string& expr) {
     std::stack<int> _stack;
 
     for (size_t i = 0; i < expr.length(); i++) {
+        while (expr[i] == '0' && isdigit(expr[i + 1]))
+            i++;
         if (isspace(expr[i]))
             continue;
         else if (isdigit(expr[i]))
-            _stack.push(expr[i] - 48);  
+            _stack.push(expr[i] - 48);
         else {
+            if (_stack.size() <= 1)
+                throw "Error";
             int b = _stack.top();
             _stack.pop();
             int a = _stack.top();
@@ -72,5 +53,7 @@ int executeExpression(const std::string& expr) {
             }
         }
     }
+    if (_stack.size() != 1)
+        throw "Error";
     return _stack.top();
 }

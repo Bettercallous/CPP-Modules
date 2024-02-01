@@ -6,17 +6,16 @@ int main(int ac, char **av) {
         return 1;
     }
 
-    std::string expr = processExpression(av[1]);
-
-    if (expr.empty()) {
-        std::cerr << "Error: invalid RPN expression" << std::endl;
+    if (processExpression(av[1]) == false)
         return 1;
-    }
 
     try {
-        std::cout << executeExpression(expr) << std::endl;
+        std::cout << executeExpression(av[1]) << std::endl;
     } catch (int) {
-        std::cout << "Error: division by zero is undefined." << std::endl;
+        std::cerr << "Error: division by zero is undefined." << std::endl;
+        return 1;
+    } catch (char const*) {
+        std::cerr << "Error: invalid RPN expression" << std::endl;
         return 1;
     }
 

@@ -5,6 +5,6 @@
 #include <stack>
 
 int executeExpression(const std::string& expr);
-std::string processExpression(const std::string& input);
+bool processExpression(const std::string& input);
 
 #endif
