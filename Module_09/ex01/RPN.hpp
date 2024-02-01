@@ -4,5 +4,7 @@
 #include <iostream>
 #include <stack>
 
+int executeExpression(const std::string& expr);
+std::string processExpression(const std::string& input);
 
 #endif
