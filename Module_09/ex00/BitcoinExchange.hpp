@@ -22,7 +22,7 @@ public:
     static std::string trim(const std::string& str);
     static bool checkDate(const std::string& dateStr);
     static bool checkValue(double& value, const std::string& valueStr);
-    static std::pair<bool, std::pair<std::string, double> > parseInput(const std::string& input);
+    static std::pair<bool, std::pair<std::string, double>   > parseInput(const std::string& input);
 };
 
 #endif
