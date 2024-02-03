@@ -22,6 +22,8 @@ bool BitcoinExchange::loadDatabase(const std::string& filename) {
     }
 
     std::string line;
+    std::getline(file, line); //skip first line
+
     while (std::getline(file, line)) {
         std::istringstream iss(line);
         std::string dateStr, valueStr;
@@ -58,7 +60,6 @@ double BitcoinExchange::getExchangeRate(const std::string& date) const {
     --it;
     return it->second; // Return rate of closest earlier date
 }
-
 
 std::string BitcoinExchange::trim(const std::string& str) {
     size_t first = str.find_first_not_of(' ');

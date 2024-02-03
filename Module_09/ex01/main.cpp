@@ -2,7 +2,7 @@
 
 int main(int ac, char **av) {
     if (ac != 2) {
-        std::cerr << "Usage: ./RPN _expression_" << std::endl;
+        std::cerr << "Usage: ./RPN \"_expression_\"" << std::endl;
         return 1;
     }
 
