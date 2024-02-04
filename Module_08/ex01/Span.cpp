@@ -19,16 +19,15 @@ Span& Span::operator=(const Span & other) {
 Span::~Span() {}
 
 void Span::addNumber(int num) {
-    if (values.size() >= capacity) {
+    if (values.size() >= capacity)
         throw std::out_of_range("Span is full, can't add more numbers");
-    }
     values.push_back(num);
 }
 
 int Span::shortestSpan() const {
-    if (values.size() < 2) {
+    if (values.size() < 2)
         throw std::logic_error("Can't find span with less than 2 numbers");
-    }
+
     std::vector<int> sortedNumbers(values);
     std::sort(sortedNumbers.begin(), sortedNumbers.end());
 
@@ -42,9 +41,8 @@ int Span::shortestSpan() const {
 }
 
 int Span::longestSpan() const {
-    if (values.size() < 2) {
+    if (values.size() < 2)
         throw std::logic_error("Can't find span with less than 2 numbers");
-    }
 
     std::vector<int> sortedNumbers(values);
     std::sort(sortedNumbers.begin(), sortedNumbers.end());
@@ -59,17 +57,11 @@ void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator
     values.insert(values.end(), begin, end);
 }
 
-void Span::addRange(int* begin, int* end) {
-    size_t addedSize = std::distance(begin, end);
-    if (values.size() + addedSize > capacity)
-        throw std::out_of_range("Not enough space to add the given numbers.");
-    values.insert(values.end(), begin, end);
-}
-
 void print(int i) {
     std::cout << i << " ";
 }
 
 void Span::displayNumbers() {
     std::for_each(values.begin(), values.end(), print);
+    std::cout << std::endl;
 }

@@ -39,6 +39,13 @@ void myTests() {
     // Test top element
     assert(mstack.top() == 15);
 
+    // Test iteration
+    int sum = 0;
+    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it) {
+        sum += *it;
+    }
+    assert(sum == 30);
+    
     // Test popping elements
     mstack.pop();
     assert(mstack.top() == 10);
@@ -48,17 +55,6 @@ void myTests() {
 
     // Test empty stack
     assert(mstack.empty());
-
-    // Test iteration
-    mstack.push(1);
-    mstack.push(2);
-    mstack.push(3);
-
-    int sum = 0;
-    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it) {
-        sum += *it;
-    }
-    assert(sum == 6); // 1 + 2 + 3 = 6
 }
 
 int main()
