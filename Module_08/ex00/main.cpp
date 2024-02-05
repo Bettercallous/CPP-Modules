@@ -5,21 +5,21 @@
 int main()
 {
     std::vector<int> vec(3);
+    vec.push_back(1);
+    vec.push_back(69);
+    vec.push_back(88);
+    vec.push_back(-45);
 
-    vec.insert(vec.begin(), 3);
-    vec.insert(vec.begin() + 1, 2);
-
-    vec.push_back(3);
-
-    std::list<int> lst(3);
-
-    lst.push_back(3);
-    lst.push_back(6);
-    lst.push_back(4);
-
-    std::list<int>::iterator it = easyfind(lst, 6);
-    if (it != lst.end())
+    std::vector<int>::iterator it = easyfind(vec, 69);
+    if (it != vec.end())
         std::cout << "Element found: "<< *it << std::endl;
+    else
+        std::cout << "Element not found" << std::endl;
+
+    std::list<int> lst(vec.begin(), vec.end());
+    std::list<int>::iterator it2 = easyfind(lst, -5);
+    if (it2 != lst.end())
+        std::cout << "Element found: "<< *it2 << std::endl;
     else
         std::cout << "Element not found" << std::endl;
     return 0;

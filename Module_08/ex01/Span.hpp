@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <climits>
 #include <exception>
+#include <cstdlib>
 
 class Span {
     private:
@@ -19,8 +20,8 @@ class Span {
         ~Span();
 
         void addNumber(int num);
-        int shortestSpan() const;
-        int longestSpan() const;
+        long shortestSpan() const;
+        long longestSpan() const;
         void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
         void displayNumbers();
 };

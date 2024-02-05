@@ -24,30 +24,30 @@ void Span::addNumber(int num) {
     values.push_back(num);
 }
 
-int Span::shortestSpan() const {
+long Span::shortestSpan() const {
     if (values.size() < 2)
         throw std::logic_error("Can't find span with less than 2 numbers");
 
     std::vector<int> sortedNumbers(values);
     std::sort(sortedNumbers.begin(), sortedNumbers.end());
 
-    int minSpan = INT_MAX;
+    long minSpan = LONG_MAX;
 
     for (size_t i = 1; i < sortedNumbers.size(); i++) {
-        int span = sortedNumbers[i] - sortedNumbers[i - 1];
+        long span = static_cast<long>(sortedNumbers[i]) - static_cast<long>(sortedNumbers[i - 1]);
         minSpan = std::min(minSpan, span);
     }
     return minSpan;
 }
 
-int Span::longestSpan() const {
+long Span::longestSpan() const {
     if (values.size() < 2)
         throw std::logic_error("Can't find span with less than 2 numbers");
 
-    std::vector<int> sortedNumbers(values);
-    std::sort(sortedNumbers.begin(), sortedNumbers.end());
+    std::vector<int>::const_iterator maxV = std::max_element(values.begin(), values.end());
+    std::vector<int>::const_iterator minV = std::min_element(values.begin(), values.end());
 
-    return sortedNumbers.back() - sortedNumbers.front();
+    return static_cast<long>(*maxV) - static_cast<long>(*minV);
 }
 
 void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
