@@ -45,7 +45,7 @@ void myTests() {
         sum += *it;
     }
     assert(sum == 30);
-    
+
     // Test popping elements
     mstack.pop();
     assert(mstack.top() == 10);
@@ -61,5 +61,8 @@ int main()
 {
     subjectTest();
     myTests();
+
     std::cout << "All tests passed successfully!" << std::endl;
+    
+    return 0;
 }

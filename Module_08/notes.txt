@@ -1,5 +1,18 @@
 // Containers:
 
+template <typename T>
+class vector {
+    private:
+        T* data;
+        size_t size;
+        size_t capacity;
+    public:
+        void size()
+
+        T* begin() {data};
+        T* end() {data + size};
+         
+}
 A container is a holder object that stores a collection of other objects (its elements). They are implemented as class templates,
 which allows a great flexibility in the types supported as elements.
 
@@ -18,5 +31,13 @@ in a sequential manner. They provide a uniform way to access elements regardless
 the details of accessing elements, allowing algorithms to operate on containers independently of their specific implementations.
 They typically support operations like advancing to the next element, accessing the current element, and comparing against another iterator.
 
-An iterator is any object that, pointing to some element in a range of elements (such as an array or a container), has the ability to iterate
-through the elements of that range using a set of operators (with at least the increment (++) and dereference (*) operators).
+
+An iterator is an object that can iterate over elements in a C++ Standard Library container and provide access to individual elements.
+The C++ Standard Library containers all provide iterators so that algorithms can access their elements in a standard way without having
+to be concerned with the type of container the elements are stored in.
+
+You can use iterators explicitly using member and global functions such as begin() and end() and operators such as ++ and -- to move forward
+or backward. You can also use iterators implicitly with a range-for loop
+
+std::vector<int> vec;
+std::vector<int>::iterator it = vec.end();
