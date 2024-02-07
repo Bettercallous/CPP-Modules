@@ -39,10 +39,10 @@ void mergeSort(std::vector<std::pair<int, int> >& pairs) {
 }
 
 
-std::vector<int> mergeInsertSortVec(std::vector<int>& numbers) {
+void mergeInsertSortVec(std::vector<int>& numbers) {
 
     std::vector<std::pair<int, int> > pairs;
-    pairs.reserve(numbers.size() / 2 + numbers.size() % 2);
+    pairs.reserve(numbers.size() / 2);
 
     for (size_t i = 0; i < numbers.size(); i += 2) {
         if (i + 1 < numbers.size())
@@ -58,21 +58,18 @@ std::vector<int> mergeInsertSortVec(std::vector<int>& numbers) {
 
     mergeSort(pairs);
 
-	std::vector<int> mainChain;
-	mainChain.reserve(numbers.size()); // 
-
-	mainChain.push_back(pairs[0].second);
+    numbers.clear();
+	numbers.push_back(pairs[0].second);
 
 	for (size_t i = 0; i < pairs.size(); i++) {
-		mainChain.push_back(pairs[i].first);
+		numbers.push_back(pairs[i].first);
 	}
 
 	for (size_t i = 1; i < pairs.size(); i++) {
-		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), pairs[i].second);
-		mainChain.insert(it, pairs[i].second);
+		std::vector<int>::iterator it = std::lower_bound(numbers.begin(), numbers.end(), pairs[i].second);
+		numbers.insert(it, pairs[i].second);
     }
 
-	return mainChain;
 }
 
 bool parseInput(std::vector<int>& numbers, int ac, char **av) {
@@ -121,10 +118,10 @@ int main(int ac, char **av) {
     printmsg(vec, "Before: ");
 
     clock_t start = clock();
-    std::vector<int> sorted = mergeInsertSortVec(vec);
+    mergeInsertSortVec(vec);
     clock_t end = clock();
 
-    printmsg(sorted, "After: ");
+    printmsg(vec, "After: ");
 
     double vectorDuration = ((double)(end - start) / CLOCKS_PER_SEC) * 1000000;
 
