@@ -1,57 +1,81 @@
 #include "PmergeMe.hpp"
 
-void mergeInsertSortList(std::list<unsigned int>& lst) {
-    if (lst.size() <= 1)
-        return;
+void merge(std::vector<std::pair<int, int> >& vec, std::vector<std::pair<int, int> >& left, std::vector<std::pair<int, int> >& right) {
 
-    std::list<unsigned int>::iterator it = lst.begin();
-    while (it != lst.end()) {
-        std::list<unsigned int>::iterator next = it;
-        ++next;
-        if (next != lst.end() && *it > *next)
-            std::iter_swap(it, next);
-        ++it;
-    }
-
-    std::list<unsigned int> sorted_half;
-    std::list<unsigned int>::iterator mid = lst.begin();
-    std::advance(mid, lst.size() / 2);
-    sorted_half.splice(sorted_half.begin(), lst, mid, lst.end());
-    mergeInsertSortList(sorted_half);
-
-    std::list<unsigned int>::iterator it_sorted = sorted_half.begin();
-    while (it_sorted != sorted_half.end()) {
-        std::list<unsigned int>::iterator insert_pos = lst.begin();
-        while (insert_pos != lst.end() && *insert_pos < *it_sorted)
-            ++insert_pos;
-        lst.insert(insert_pos, *it_sorted);
-        ++it_sorted;
-    }
-}
-
-void mergeInsertSortVec(std::vector<unsigned int>& numbers) {
-    if (numbers.size() <= 1)
-        return;
+	size_t i = 0, l = 0, r = 0;
+	size_t leftSize = left.size(), rightSize = right.size();
  
-    for (size_t i = 0; i < numbers.size() - 1; i += 2) {
-        if (numbers[i] > numbers[i + 1])
-            std::swap(numbers[i], numbers[i + 1]);
-    }
+	// while there are elements within both right and left vectors
+	while (l < leftSize && r < rightSize) {
+		if (left[l].first < right[r].first)
+			vec[i++] = left[l++];
+		else
+			vec[i++] = right[r++];
+	}
 
-    std::vector<unsigned int> sorted_half(numbers.begin() + numbers.size() / 2, numbers.end());
+	while (l < leftSize) {
+		vec[i++] = left[l++];
+	}
 
-    mergeInsertSortVec(sorted_half);
+	while (r < rightSize) {
+		vec[i++] = right[r++];
+	}
 
-    for (size_t i = 0; i < numbers.size() / 2; i++) {
-        // upper_bound uses binary search
-        size_t insert_pos = std::distance(sorted_half.begin(), std::upper_bound(sorted_half.begin(), sorted_half.end(), numbers[i]));
-        sorted_half.insert(sorted_half.begin() + insert_pos, numbers[i]);
-    }
-
-    numbers = sorted_half;
 }
 
-bool parseInput(std::vector<unsigned int>& numbers, int ac, char **av) {
+void mergeSort(std::vector<std::pair<int, int> >& pairs) {
+    if (pairs.size() <= 1)
+      return;
+
+    int mid = pairs.size() / 2;
+
+    std::vector<std::pair<int, int> > left(pairs.begin(), pairs.begin() + mid);
+    std::vector<std::pair<int, int> > right(pairs.begin() + mid, pairs.end());
+    
+    mergeSort(left);
+    mergeSort(right);
+
+    merge(pairs, left, right);
+}
+
+
+std::vector<int> mergeInsertSortVec(std::vector<int>& numbers) {
+
+    std::vector<std::pair<int, int> > pairs;
+    pairs.reserve(numbers.size() / 2 + numbers.size() % 2);
+
+    for (size_t i = 0; i < numbers.size(); i += 2) {
+        if (i + 1 < numbers.size())
+            pairs.push_back(std::make_pair(numbers[i], numbers[i + 1]));
+        else
+            pairs.push_back(std::make_pair(numbers[i], -1));
+    }
+
+    for (size_t i = 0; i < pairs.size(); i++) {
+        if (pairs[i].first < pairs[i].second)
+            std::swap(pairs[i].first, pairs[i].second);
+    }
+
+    mergeSort(pairs);
+
+	std::vector<int> mainChain;
+	mainChain.reserve(numbers.size()); // 
+
+	mainChain.push_back(pairs[0].second);
+
+	for (size_t i = 0; i < pairs.size(); i++) {
+		mainChain.push_back(pairs[i].first);
+	}
+
+	for (size_t i = 1; i < pairs.size(); i++) {
+		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), pairs[i].second);
+		mainChain.insert(it, pairs[i].second);
+    }
+
+	return mainChain;
+}
+
+bool parseInput(std::vector<int>& numbers, int ac, char **av) {
     
     std::string tmp;
     for (int i = 1; i < ac; i++) {
@@ -61,7 +85,7 @@ bool parseInput(std::vector<unsigned int>& numbers, int ac, char **av) {
             return false;
         }
 
-        unsigned int x;
+        int x;
         std::string buf;
         std::istringstream iss(tmp);
 
@@ -76,9 +100,9 @@ bool parseInput(std::vector<unsigned int>& numbers, int ac, char **av) {
     return true;
 }
 
-void print(unsigned int x) {std::cout << x << " ";}
+void print(int x) {std::cout << x << " ";}
 
-void printmsg(const std::vector<unsigned int>& vec, const std::string& msg) {
+void printmsg(const std::vector<int>& vec, const std::string& msg) {
     std::cout << msg;
     std::for_each(vec.begin(), vec.end(), print);
     std::cout << std::endl;
@@ -90,29 +114,22 @@ int main(int ac, char **av) {
         return 1;
     }
     
-    std::vector<unsigned int> vec;
+    std::vector<int> vec;
     if (parseInput(vec, ac, av) == false)
         return 1;
-    std::list<unsigned int> list(vec.begin(), vec.end());
-    
+
     printmsg(vec, "Before: ");
 
     clock_t start = clock();
-    mergeInsertSortVec(vec);
+    std::vector<int> sorted = mergeInsertSortVec(vec);
     clock_t end = clock();
 
-    printmsg(vec, "After: ");
+    printmsg(sorted, "After: ");
 
     double vectorDuration = ((double)(end - start) / CLOCKS_PER_SEC) * 1000000;
 
-    start = clock();
-    mergeInsertSortList(list);
-    end = clock();
-
-    double listDuration = ((double)(end - start) / CLOCKS_PER_SEC) * 1000000;
-
     std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << vectorDuration << " µs" << std::endl;
-    std::cout << "Time to process a range of " << list.size() << " elements with std::list   : " << listDuration << " µs" << std::endl;
+    // std::cout << "Time to process a range of " << list.size() << " elements with std::list   : " << listDuration << " µs" << std::endl;
 
     return 0;
 }
