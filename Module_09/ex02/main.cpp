@@ -66,10 +66,11 @@ void mergeInsertSortVec(std::vector<int>& numbers) {
 	}
 
 	for (size_t i = 1; i < pairs.size(); i++) {
+        if (pairs[i].second == -1)
+            continue;
 		std::vector<int>::iterator it = std::lower_bound(numbers.begin(), numbers.end(), pairs[i].second);
 		numbers.insert(it, pairs[i].second);
     }
-
 }
 
 bool parseInput(std::vector<int>& numbers, int ac, char **av) {
