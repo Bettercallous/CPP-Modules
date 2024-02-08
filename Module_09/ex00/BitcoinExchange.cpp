@@ -74,34 +74,35 @@ static bool isNumeric(const std::string& str, const std::string& sequence) {
 }
 
 std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(const std::string& input) {
-    std::string tokens[3];
+    std::list<std::string> tokens;
     std::string str = trim(input);
     std::istringstream iss(str);
     std::string token;
-    int size = 0;
 
     if (str[0] == '|' || str[str.length() - 1] == '|') {
         std::cout << "Error: bad input => " << input << std::endl;
         return std::make_pair(false, std::make_pair("", 0));
     }
 
-    while (std::getline(iss, token, '|') && size < 3) {
-        tokens[size++] = token;
+    while (std::getline(iss, token, '|')) {
+        tokens.push_back(token);
     }
 
-    if (size != 2) {
-        std::cout << "Error: bad input => " << input << std::endl;
+    if (tokens.size() != 2) {
+        std::cerr << "Error: bad input => " << input << std::endl;
         return std::make_pair(false, std::make_pair("", 0));
     }
 
-    std::string key = trim(tokens[0]);
-    std::string val = trim(tokens[1]);
-    
-    if (key == "date" || val == "value") {
-        if (flag == false) {
-            flag = true;
-            return std::make_pair(false, std::make_pair("", 0));
+    std::list<std::string>::iterator it = tokens.begin();
+    std::string key = trim(*it);
+    std::advance(it, 1);
+    std::string val = trim(*it);
+
+    if (key == "date" && val == "value") {
+        if (flag == true) {
+            std::cerr << "Error: bad input => " << input << std::endl;
         }
+        return std::make_pair(false, std::make_pair("", 0));
     }
 
     double value;
@@ -152,46 +153,53 @@ bool BitcoinExchange::checkValue(double& value, const std::string& valueStr) {
 }
 
 bool BitcoinExchange::checkDate(const std::string& date) {
-    std::string tokens[4];
+    std::list<std::string> tokens;
     std::istringstream iss(date);
     std::string token;
-    int size = 0;
 
-    while (std::getline(iss, token, '-') && size < 4) {
-        tokens[size++] = token;
+    while (std::getline(iss, token, '-')) {
+        tokens.push_back(token);
     }
 
-    if (size != 3) {
+    if (tokens.size() != 3) {
         std::cerr << "Error: invalid date => " << date << std::endl;
         return false;
     }
 
-    for (int i = 0; i < 3; i++) {
-        if (isNumeric(tokens[i], "0123456789") == false) {
+    for (std::list<std::string>::iterator itr = tokens.begin(); itr != tokens.end(); ++itr) {
+        if (isNumeric(*itr, "0123456789") == false) {
             std::cerr << "Error: invalid date => " << date << date << std::endl;
             return false;
         }
     }
 
-    if (tokens[0].length() != 4 || tokens[1].length() != 2 || tokens[2].length() != 2) {
+    std::list<std::string>::iterator it = tokens.begin();
+
+    std::string year(*it);
+    std::advance(it, 1);
+    std::string month(*it);
+    std::advance(it, 1);
+    std::string day(*it);
+
+    if (year.length() != 4 || month.length() != 2 || day.length() != 2) {
         std::cerr << "Error: invalid date => " << date << std::endl;
         return false;
     }
 
     int tmp;
-    std::istringstream(tokens[0]) >> tmp;
+    std::istringstream(year) >> tmp;
     if (tmp < 2009 || tmp > 2022) {
         std::cerr << "Error: invalid date => " << date << std::endl;
         return false;
     }
 
-    std::istringstream(tokens[1]) >> tmp;
+    std::istringstream(month) >> tmp;
     if (tmp <= 0 || tmp > 12) {
         std::cerr << "Error: invalid date => " << date << std::endl;
         return false;
     }
 
-    std::istringstream(tokens[2]) >> tmp;
+    std::istringstream(day) >> tmp;
     if (tmp <= 0 || tmp > 31) {
         std::cerr << "Error: invalid date => " << date << std::endl;
         return false;
