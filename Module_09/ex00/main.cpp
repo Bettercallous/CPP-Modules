@@ -16,17 +16,16 @@ int main(int argc, char **argv) {
 
     BitcoinExchange bitcoinExchange;
     if (!bitcoinExchange.loadDatabase("data.csv")) {
-        std::cerr << "Error: could not load bitcoin exchange database." << std::endl;
+        std::cerr << "Error: could not load bitcoin database." << std::endl;
         return 1;
     }
 
     std::string line;
     while (std::getline(inputFile, line)) {
-        std::pair<bool, std::pair<std::string, double> > pair = BitcoinExchange::parseInput(line);
-        if (flag == false)
-            flag = true;
+        std::pair<bool, std::pair<std::string, double> > pair = bitcoinExchange.parseInput(line);
         if (pair.first == false)
             continue;
+        flag == false ? flag = true : 0;
         double exchangeRate = bitcoinExchange.getExchangeRate(pair.second.first);
         if (exchangeRate == -1) {
             std::cerr << "Error: bad input => " << pair.second.first << std::endl;

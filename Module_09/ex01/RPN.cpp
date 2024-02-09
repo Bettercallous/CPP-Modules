@@ -1,6 +1,20 @@
 #include "RPN.hpp"
 
-bool processExpression(const std::string& input) {
+RPN::RPN() {}
+
+RPN::RPN(const RPN & other) {*this = other;}
+
+RPN& RPN::operator=(const RPN & other) {
+    if (this != & other) {
+        _stack = other._stack;
+    }
+    return *this;
+}
+
+RPN::~RPN() {}
+
+
+bool RPN::processExpression(const std::string& input) {
     if (input.empty()) {
         std::cerr << "Error: empty argument" << std::endl;
         return false;
@@ -23,15 +37,14 @@ bool processExpression(const std::string& input) {
     return true;
 }
 
-int executeExpression(const std::string& expr) {
-    std::stack<int> _stack;
+int RPN::executeExpression(const std::string& expr) {
 
     for (size_t i = 0; i < expr.length(); i++) {
-        while (expr[i] == '0' && isdigit(expr[i + 1]))
-            i++;
         if (isspace(expr[i]))
             continue;
-        else if (isdigit(expr[i]))
+        while (expr[i] == '0' && isdigit(expr[i + 1]))
+            i++;
+        if (isdigit(expr[i]))
             _stack.push(expr[i] - 48);
         else {
             if (_stack.size() <= 1)

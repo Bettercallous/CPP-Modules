@@ -11,7 +11,7 @@
 
 class BitcoinExchange {
 private:
-    std::map<std::string, double> exchangeRates;
+    std::map<std::string, double> _exchangeRates;
 public:
     BitcoinExchange();
     BitcoinExchange(const BitcoinExchange & other);
@@ -20,10 +20,10 @@ public:
 
     bool loadDatabase(const std::string& filename);
     double getExchangeRate(const std::string& date) const;
-    static std::string trim(const std::string& str);
-    static bool checkDate(const std::string& dateStr);
-    static bool checkValue(double& value, const std::string& valueStr);
-    static std::pair<bool, std::pair<std::string, double>   > parseInput(const std::string& input);
+    std::string trim(const std::string& str);
+    bool checkDate(const std::string& dateStr);
+    bool checkValue(double& value, const std::string& valueStr);
+    std::pair<bool, std::pair<std::string, double> > parseInput(const std::string& input);
 };
 
 #endif

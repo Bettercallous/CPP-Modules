@@ -6,11 +6,12 @@ int main(int ac, char **av) {
         return 1;
     }
 
-    if (processExpression(av[1]) == false)
+    RPN data;
+    if (data.processExpression(av[1]) == false)
         return 1;
 
     try {
-        std::cout << executeExpression(av[1]) << std::endl;
+        std::cout << data.executeExpression(av[1]) << std::endl;
     } catch (int) {
         std::cerr << "Error: division by zero is undefined." << std::endl;
         return 1;

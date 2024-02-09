@@ -8,12 +8,11 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange & other) {*this = other;}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange & other) {
     if (this != &other)
-        exchangeRates = other.exchangeRates;
+        _exchangeRates = other._exchangeRates;
     return *this;
 }
 
 BitcoinExchange::~BitcoinExchange() {}
-
 
 bool BitcoinExchange::loadDatabase(const std::string& filename) {
     std::ifstream file(filename.c_str());
@@ -31,7 +30,7 @@ bool BitcoinExchange::loadDatabase(const std::string& filename) {
             double value;
             std::istringstream(valueStr) >> value;
             std::string key = trim(dateStr);
-            exchangeRates[key] = value;
+            _exchangeRates[key] = value;
         }
     }
 
@@ -39,26 +38,19 @@ bool BitcoinExchange::loadDatabase(const std::string& filename) {
 }
 
 double BitcoinExchange::getExchangeRate(const std::string& date) const {
-    if (exchangeRates.empty()) {
+
+    std::map<std::string, double>::const_iterator it = _exchangeRates.lower_bound(date);
+
+    if (it != _exchangeRates.end() && it->first == date) {
+        return it->second;
+    }
+
+    if (it == _exchangeRates.begin()) {
         return -1;
     }
 
-    // Find the first date greater than or equal to the input date
-    std::map<std::string, double>::const_iterator it = exchangeRates.lower_bound(date);
-
-    // Check if exact date found
-    if (it != exchangeRates.end() && it->first == date) {
-        return it->second; // Found exact date, return its rate
-    }
-
-    // No exact match, check if before first entry
-    if (it == exchangeRates.begin()) {
-        return -1; // Date comes before earliest recorded date
-    }
-
-    // Use the previous date as it's the closest
     --it;
-    return it->second; // Return rate of closest earlier date
+    return it->second;
 }
 
 std::string BitcoinExchange::trim(const std::string& str) {
@@ -118,32 +110,28 @@ std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(con
 }
 
 bool BitcoinExchange::checkValue(double& value, const std::string& valueStr) {
-    std::istringstream buf(valueStr);
 
     if (isNumeric(valueStr, ".0123456789") == false) {
-        std::cerr << "Error: invalid number => " << buf.str() << std::endl;
+        std::cerr << "Error: invalid number => " << valueStr << std::endl;
         return false;
     }
 
-    // Check for multiple decimal points
     if (std::count(valueStr.begin(), valueStr.end(), '.') > 1) {
-        std::cerr << "Error: invalid number => " << buf.str() << std::endl;
+        std::cerr << "Error: invalid number => " << valueStr << std::endl;
         return false;
     }
 
-    // Check if the string starts with a decimal point
     if (valueStr[0] == '.') {
-        std::cerr << "Error: invalid number => " << buf.str() << std::endl;
+        std::cerr << "Error: invalid number => " << valueStr << std::endl;
         return false;
     }
 
-    // Check if the string ends with a decimal point
     if (valueStr[valueStr.length() - 1] == '.') {
-        std::cerr << "Error: invalid number => " << buf.str() << std::endl;
+        std::cerr << "Error: invalid number => " << valueStr << std::endl;
         return false;
     }
-    buf >> value;
-    // cant be negative because of isNumeric function above
+
+    std::istringstream(valueStr) >> value;
     if (value > 1000) {
         std::cerr << "Error: number too large." << std::endl;
         return false;
@@ -174,12 +162,9 @@ bool BitcoinExchange::checkDate(const std::string& date) {
     }
 
     std::list<std::string>::iterator it = tokens.begin();
-
     std::string year(*it);
-    std::advance(it, 1);
-    std::string month(*it);
-    std::advance(it, 1);
-    std::string day(*it);
+    std::string month(*(++it));
+    std::string day(*(++it));
 
     if (year.length() != 4 || month.length() != 2 || day.length() != 2) {
         std::cerr << "Error: invalid date => " << date << std::endl;

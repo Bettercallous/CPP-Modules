@@ -6,18 +6,16 @@ int main(int ac, char **av) {
         return 1;
     }
 
-    std::vector<int> vec;
-    if (parseInput(vec, ac, av) == false)
+    PmergeMe data;
+    if (data.parseInput(ac, av) == false)
         return 1;
 
-    std::deque<int> deck(vec.begin(), vec.end());
+    data.printElements("Before: ");
+    std::pair<double, double> duration = data.sort();
+    data.printElements("After: ");
 
-    printElements(vec, "Before: ");
-    std::pair<double, double> duration = sort(vec, deck);
-    printElements(vec, "After: ");
-
-    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << duration.first << " µs" << std::endl;
-    std::cout << "Time to process a range of " << deck.size() << " elements with std::deque   : " << duration.second << " µs" << std::endl;
+    std::cout << "Time to process a range of " << data.getVecSize() << " elements with std::vector : " << duration.first << " µs" << std::endl;
+    std::cout << "Time to process a range of " << data.getDequeSize() << " elements with std::deque   : " << duration.second << " µs" << std::endl;
 
     return 0;
 }

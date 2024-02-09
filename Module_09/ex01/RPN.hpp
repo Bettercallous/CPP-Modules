@@ -4,7 +4,18 @@
 #include <iostream>
 #include <stack>
 
-int executeExpression(const std::string& expr);
-bool processExpression(const std::string& input);
+class RPN {
+    private:
+        std::stack<int> _stack;
+    public:
+        RPN();
+        RPN(const RPN & other);
+        RPN& operator=(const RPN & other);
+        ~RPN();
+
+        bool processExpression(const std::string& input);
+        int executeExpression(const std::string& expr);
+};
+
 
 #endif
