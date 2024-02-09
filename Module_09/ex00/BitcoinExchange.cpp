@@ -72,7 +72,7 @@ std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(con
     std::string token;
 
     if (str[0] == '|' || str[str.length() - 1] == '|') {
-        std::cout << "Error: bad input => " << input << std::endl;
+        std::cout << "Error: bad input => " + input << std::endl;
         return std::make_pair(false, std::make_pair("", 0));
     }
 
@@ -81,7 +81,7 @@ std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(con
     }
 
     if (tokens.size() != 2) {
-        std::cerr << "Error: bad input => " << input << std::endl;
+        std::cerr << "Error: bad input => " + input << std::endl;
         return std::make_pair(false, std::make_pair("", 0));
     }
 
@@ -92,7 +92,7 @@ std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(con
 
     if (key == "date" && val == "value") {
         if (flag == true) {
-            std::cerr << "Error: bad input => " << input << std::endl;
+            std::cerr << "Error: bad input => " + input << std::endl;
         }
         return std::make_pair(false, std::make_pair("", 0));
     }
@@ -105,29 +105,29 @@ std::pair<bool, std::pair<std::string, double> > BitcoinExchange::parseInput(con
     if (checkDate(key) == false) {
         return std::make_pair(false, std::make_pair("", 0));
     }
-    
+
     return std::make_pair(true, std::make_pair(key, value));
 }
 
 bool BitcoinExchange::checkValue(double& value, const std::string& valueStr) {
 
     if (isNumeric(valueStr, ".0123456789") == false) {
-        std::cerr << "Error: invalid number => " << valueStr << std::endl;
+        std::cerr << "Error: invalid number => " + valueStr << std::endl;
         return false;
     }
 
     if (std::count(valueStr.begin(), valueStr.end(), '.') > 1) {
-        std::cerr << "Error: invalid number => " << valueStr << std::endl;
+        std::cerr << "Error: invalid number => " + valueStr << std::endl;
         return false;
     }
 
     if (valueStr[0] == '.') {
-        std::cerr << "Error: invalid number => " << valueStr << std::endl;
+        std::cerr << "Error: invalid number => " + valueStr << std::endl;
         return false;
     }
 
     if (valueStr[valueStr.length() - 1] == '.') {
-        std::cerr << "Error: invalid number => " << valueStr << std::endl;
+        std::cerr << "Error: invalid number => " + valueStr << std::endl;
         return false;
     }
 
@@ -150,13 +150,13 @@ bool BitcoinExchange::checkDate(const std::string& date) {
     }
 
     if (tokens.size() != 3) {
-        std::cerr << "Error: invalid date => " << date << std::endl;
+        std::cerr << "Error: invalid date => " + date << std::endl;
         return false;
     }
 
     for (std::list<std::string>::iterator itr = tokens.begin(); itr != tokens.end(); ++itr) {
         if (isNumeric(*itr, "0123456789") == false) {
-            std::cerr << "Error: invalid date => " << date << date << std::endl;
+            std::cerr << "Error: invalid date => " + date << std::endl;
             return false;
         }
     }
@@ -167,26 +167,26 @@ bool BitcoinExchange::checkDate(const std::string& date) {
     std::string day(*(++it));
 
     if (year.length() != 4 || month.length() != 2 || day.length() != 2) {
-        std::cerr << "Error: invalid date => " << date << std::endl;
+        std::cerr << "Error: invalid date => " + date << std::endl;
         return false;
     }
 
     int tmp;
     std::istringstream(year) >> tmp;
     if (tmp < 2009 || tmp > 2022) {
-        std::cerr << "Error: invalid date => " << date << std::endl;
+        std::cerr << "Error: invalid date => " + date << std::endl;
         return false;
     }
 
     std::istringstream(month) >> tmp;
     if (tmp <= 0 || tmp > 12) {
-        std::cerr << "Error: invalid date => " << date << std::endl;
+        std::cerr << "Error: invalid date => " + date << std::endl;
         return false;
     }
 
     std::istringstream(day) >> tmp;
     if (tmp <= 0 || tmp > 31) {
-        std::cerr << "Error: invalid date => " << date << std::endl;
+        std::cerr << "Error: invalid date => " + date << std::endl;
         return false;
     }
     return true;
