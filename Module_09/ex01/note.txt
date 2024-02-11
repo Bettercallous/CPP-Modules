@@ -1,6 +1,0 @@
-Reverse Polish notation (RPN) is a method for conveying mathematical expressions without the use of separators such as brackets and parentheses. In this notation, the operators follow their operands, hence removing the need for brackets to define evaluation priority. The operation is read from left to right but execution is done every time an operator is reached, and always using the last two numbers as the operands. This notation is suited for computers and calculators since there are fewer characters to track and fewer operations to execute.
-
-RPN leads to faster calculations for a couple of reasons. One is that there is less information to store. Therefore, instead of needing to store nine characters for the expression ((5–3) * 2), computers using RPN only need to store five characters with the expression 5 3–2 *. And because there are fewer characters to process, execution becomes faster.
-
-
-using a stack is the most common and efficient approach. The stack data structure fits naturally with the way RPN works because it relies on the Last-In-First-Out (LIFO) principle, which is exactly what a stack provides.

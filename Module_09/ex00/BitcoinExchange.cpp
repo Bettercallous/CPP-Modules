@@ -21,7 +21,7 @@ bool BitcoinExchange::loadDatabase(const std::string& filename) {
     }
 
     std::string line;
-    std::getline(file, line); //skip first line
+    std::getline(file, line);
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
